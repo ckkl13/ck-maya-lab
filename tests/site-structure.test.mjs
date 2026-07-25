@@ -50,6 +50,7 @@ test('pointer light keeps following without resetting after leaving a scope', as
   assert.match(hook, /currentX \+= \(targetX - currentX\)/)
   assert.doesNotMatch(hook, /pointerleave/)
   assert.doesNotMatch(hook, /const reset/)
+  assert.match(hook, /document\.documentElement/)
 })
 
 test('the mobile hero headline fits within the narrow viewport', async () => {
@@ -136,8 +137,9 @@ test('app mounts one page-bottom GradualBlur', async () => {
   assert.equal((app.match(/<GradualBlur/g) ?? []).length, 1)
   assert.match(app, /position="bottom"/)
   assert.match(app, /target="parent"/)
-  assert.match(app, /divCount=\{6\}/)
-  assert.match(app, /strength=\{5\}/)
+  assert.match(app, /height="13rem"/)
+  assert.match(app, /divCount=\{10\}/)
+  assert.match(app, /strength=\{7\}/)
   assert.match(app, /opacity=\{1\}/)
   assert.doesNotMatch(app, /exponential/)
 })
@@ -246,6 +248,15 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
   assert.match(css, /\.hero-frame-rig\s*\{[^}]*aspect-ratio:\s*390\s*\/\s*498/)
   assert.match(css, /\.hero-frame-ck\s*\{[^}]*aspect-ratio:\s*488\s*\/\s*1012/)
   assert.doesNotMatch(css, /\.hero-frame\s*\{[^}]*border:/)
+})
+
+test('tool showcase cards reuse TiltedCard for image interaction', async () => {
+  const exhibition = await read('src/components/ToolExhibition.tsx')
+  const card = await read('src/components/TiltedCard.tsx')
+  assert.match(exhibition, /<TiltedCard/)
+  assert.match(exhibition, /overlay=/)
+  assert.match(card, /onClick/)
+  assert.match(card, /overlay/)
 })
 
 test('hero artwork does not include an extra direction arrow', async () => {

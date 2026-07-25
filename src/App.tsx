@@ -24,8 +24,9 @@ export default function App() {
         <GradualBlur
           position="bottom"
           target="parent"
-          strength={5}
-          divCount={6}
+          height="13rem"
+          strength={7}
+          divCount={10}
           opacity={1}
         />
       </main>

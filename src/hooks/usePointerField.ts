@@ -16,6 +16,7 @@ export function usePointerField(scope: RefObject<HTMLElement | null>, options: P
     let currentY = 0
     let targetX = 0
     let targetY = 0
+    const fieldRoot = options.viewport ? document.documentElement : root
 
     const render = () => {
       const follow = 0.22
@@ -28,16 +29,16 @@ export function usePointerField(scope: RefObject<HTMLElement | null>, options: P
         currentY = targetY
       }
 
-      root.style.setProperty('--pointer-far-x', `${currentX * 5}px`)
-      root.style.setProperty('--pointer-far-y', `${currentY * 4}px`)
-      root.style.setProperty('--pointer-mid-x', `${currentX * 11}px`)
-      root.style.setProperty('--pointer-mid-y', `${currentY * 8}px`)
-      root.style.setProperty('--pointer-near-x', `${currentX * 18}px`)
-      root.style.setProperty('--pointer-near-y', `${currentY * 13}px`)
-      root.style.setProperty('--pointer-light-x', `${(currentX + 1) * 50}%`)
-      root.style.setProperty('--pointer-light-y', `${(currentY + 1) * 50}%`)
-      root.style.setProperty('--global-pointer-x', `${(currentX + 1) * 50}%`)
-      root.style.setProperty('--global-pointer-y', `${(currentY + 1) * 50}%`)
+      fieldRoot.style.setProperty('--pointer-far-x', `${currentX * 5}px`)
+      fieldRoot.style.setProperty('--pointer-far-y', `${currentY * 4}px`)
+      fieldRoot.style.setProperty('--pointer-mid-x', `${currentX * 11}px`)
+      fieldRoot.style.setProperty('--pointer-mid-y', `${currentY * 8}px`)
+      fieldRoot.style.setProperty('--pointer-near-x', `${currentX * 18}px`)
+      fieldRoot.style.setProperty('--pointer-near-y', `${currentY * 13}px`)
+      fieldRoot.style.setProperty('--pointer-light-x', `${(currentX + 1) * 50}%`)
+      fieldRoot.style.setProperty('--pointer-light-y', `${(currentY + 1) * 50}%`)
+      fieldRoot.style.setProperty('--global-pointer-x', `${(currentX + 1) * 50}%`)
+      fieldRoot.style.setProperty('--global-pointer-y', `${(currentY + 1) * 50}%`)
 
       if (settled) {
         frame = 0

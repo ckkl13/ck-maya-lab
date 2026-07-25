@@ -2,7 +2,6 @@ import { useRef, useState } from 'react'
 import { ArrowDown } from 'lucide-react'
 import { gsap, useGSAP } from '../animation/gsap'
 import { tools } from '../data/tools'
-import { usePointerField } from '../hooks/usePointerField'
 import { TiltedCard } from './TiltedCard'
 
 const frames = [
@@ -14,7 +13,6 @@ const frames = [
 export function HeroExhibition() {
   const scope = useRef<HTMLElement>(null)
   const [activeFrame, setActiveFrame] = useState<string | null>(null)
-  usePointerField(scope)
 
   useGSAP(() => {
     const mm = gsap.matchMedia()
