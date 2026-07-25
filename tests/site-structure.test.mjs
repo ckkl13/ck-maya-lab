@@ -250,13 +250,10 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
   assert.doesNotMatch(css, /\.hero-frame\s*\{[^}]*border:/)
 })
 
-test('tool showcase cards reuse TiltedCard for image interaction', async () => {
+test('tool showcase cards keep the stable link-based image interaction', async () => {
   const exhibition = await read('src/components/ToolExhibition.tsx')
-  const card = await read('src/components/TiltedCard.tsx')
-  assert.match(exhibition, /<TiltedCard/)
-  assert.match(exhibition, /overlay=/)
-  assert.match(card, /onClick/)
-  assert.match(card, /overlay/)
+  assert.match(exhibition, /<a className="work-visual"/)
+  assert.doesNotMatch(exhibition, /<TiltedCard/)
   assert.doesNotMatch(exhibition, /work\.querySelector\('\.work-visual'\), \{ autoAlpha/)
 })
 

@@ -3,7 +3,6 @@ import { ArrowDownToLine, ArrowUpRight } from 'lucide-react'
 import { gsap, useGSAP } from '../animation/gsap'
 import { tools } from '../data/tools'
 import type { ToolId } from '../types/tools'
-import { TiltedCard } from './TiltedCard'
 
 const artwork: Record<string, string> = {
   'rig-box': './media/exhibition/rig-box.png',
@@ -14,7 +13,7 @@ const artwork: Record<string, string> = {
 export function ToolExhibition() {
   const scope = useRef<HTMLElement>(null)
 
-  const openInStudio = (id: ToolId, event: React.MouseEvent<HTMLElement>) => {
+  const openInStudio = (id: ToolId, event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     window.history.replaceState(null, '', `#${id}`)
     window.dispatchEvent(new HashChangeEvent('hashchange'))
@@ -87,15 +86,6 @@ export function ToolExhibition() {
         {tools.map((tool, index) => (
           <article id={`showcase-${tool.id}`} className={`exhibition-work tool-${tool.id} ${index % 2 ? 'is-reversed' : ''}`} key={tool.id}>
             <span className="work-number">0{index + 1}</span>
-            <TiltedCard
-              className="work-visual"
-              imageSrc={artwork[tool.id]}
-              altText={`${tool.name} Maya UI`}
-              rotateAmplitude={5}
-              scaleOnHover={1.025}
-              onClick={(event) => openInStudio(tool.id, event)}
-              overlay={<span>VIEW INTERACTIVE UI <ArrowUpRight /></span>}
-            />
             <a className="work-visual" href={`#${tool.id}`} aria-label={`打开 ${tool.name} 交互演示`} onClick={(event) => openInStudio(tool.id, event)}>
               <img src={artwork[tool.id]} alt={`${tool.name} Maya 工具界面`} loading="lazy" />
               <span>VIEW INTERACTIVE UI <ArrowUpRight /></span>
