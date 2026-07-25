@@ -1,0 +1,39 @@
+:root {
+  font-family: Inter, "Segoe UI", "Microsoft YaHei UI", sans-serif;
+  color: #e8edf2;
+  background: #111315;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --bg: #111315;
+  --surface: #181b1e;
+  --surface-2: #202428;
+  --surface-3: #292e33;
+  --line: #343a40;
+  --text: #e8edf2;
+  --muted: #98a3ad;
+  --cyan: #46d7c5;
+  --coral: #ff725e;
+  --yellow: #f2c94c;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--bg); }
+button, input, select { font: inherit; letter-spacing: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { color: inherit; }
+a { color: inherit; }
+svg { width: 1em; height: 1em; stroke-width: 1.8; }
+::selection { color: #101315; background: var(--cyan); }
+
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

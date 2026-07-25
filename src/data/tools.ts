@@ -1,0 +1,41 @@
+import type { ToolDefinition } from '../types/tools'
+
+export const tools: ToolDefinition[] = [
+  {
+    id: 'rig-box',
+    name: 'CK Rig Box',
+    shortName: 'Rig Box',
+    summary: '把关节链转换成可控、可读、可撤销的 FK 控制器层级。',
+    category: '绑定 / FK',
+    version: '1.9',
+    mayaVersions: 'Maya 2021-2026',
+    accent: '#46d7c5',
+    downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/ck-rig-box.zip',
+    features: ['四种层级模式', 'FK 复制链', '多类型约束', '次级控制器'],
+  },
+  {
+    id: 'ck-tool',
+    name: 'CK Tool',
+    shortName: 'CK Tool',
+    summary: '集中处理控制器形状、颜色、关节层级、曲线和 Tag。',
+    category: '绑定 / 综合',
+    version: '1.2',
+    mayaVersions: 'Maya 2022+',
+    accent: '#ff725e',
+    screenshot: './media/ck-tool-ui.png',
+    downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/ck-tool.zip',
+    features: ['控制器形状库', '颜色与线宽', '关节控制器生成', 'Tag 工作流'],
+  },
+  {
+    id: 'scripts-box',
+    name: 'Scripts Box',
+    shortName: 'Scripts Box',
+    summary: '在 Maya 内组织、搜索、编辑和安全管理 Python/MEL 脚本。',
+    category: '效率 / 管理',
+    version: '1.0',
+    mayaVersions: 'Maya 2021-2026',
+    accent: '#f2c94c',
+    downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/scripts-box.zip',
+    features: ['分组与搜索', '拖放排序', '回收站', '脚本编辑器'],
+  },
+]
