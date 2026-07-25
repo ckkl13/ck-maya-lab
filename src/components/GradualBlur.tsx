@@ -3,6 +3,7 @@ import './GradualBlur.css'
 
 type BlurPosition = 'top' | 'bottom'
 type BlurCurve = 'linear' | 'bezier' | 'ease-in' | 'ease-out'
+type BlurTarget = 'page' | 'parent'
 
 type GradualBlurProps = {
   position?: BlurPosition
@@ -12,6 +13,7 @@ type GradualBlurProps = {
   exponential?: boolean
   curve?: BlurCurve
   opacity?: number
+  target?: BlurTarget
   className?: string
 }
 
@@ -30,6 +32,7 @@ export function GradualBlur({
   exponential = false,
   curve = 'linear',
   opacity = 1,
+  target = 'parent',
   className = '',
 }: GradualBlurProps) {
   const layers = useMemo(() => {
@@ -60,7 +63,7 @@ export function GradualBlur({
 
   return (
     <div
-      className={`gradual-blur gradual-blur-${position} ${className}`.trim()}
+      className={`gradual-blur gradual-blur-${target} gradual-blur-${position} ${className}`.trim()}
       aria-hidden="true"
       style={{
         '--gradual-blur-height': height,

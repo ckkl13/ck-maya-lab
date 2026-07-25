@@ -124,8 +124,11 @@ test('app mounts one page-bottom GradualBlur', async () => {
   const app = await read('src/App.tsx')
   assert.equal((app.match(/<GradualBlur/g) ?? []).length, 1)
   assert.match(app, /position="bottom"/)
-  assert.match(app, /divCount=\{8\}/)
-  assert.match(app, /strength=\{2\.4\}/)
+  assert.match(app, /target="parent"/)
+  assert.match(app, /divCount=\{6\}/)
+  assert.match(app, /strength=\{5\}/)
+  assert.match(app, /opacity=\{1\}/)
+  assert.doesNotMatch(app, /exponential/)
 })
 
 test('scene changes do not render a scanning line over the background', async () => {

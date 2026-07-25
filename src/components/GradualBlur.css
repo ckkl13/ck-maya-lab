@@ -1,8 +1,7 @@
 .gradual-blur {
   --gradual-blur-height: 7rem;
   --gradual-blur-opacity: .86;
-  position: fixed;
-  z-index: 80;
+  z-index: 5;
   left: 0;
   right: 0;
   height: var(--gradual-blur-height);
@@ -10,18 +9,14 @@
   opacity: var(--gradual-blur-opacity);
   pointer-events: none;
   isolation: isolate;
-  background: linear-gradient(to bottom, rgba(8,10,12,0), rgba(8,10,12,.64));
-  animation: gradual-blur-reveal .7s .12s ease-out both;
+  background: transparent;
 }
 
+.gradual-blur-page { position: fixed; z-index: 80; }
+.gradual-blur-parent { position: absolute; }
 .gradual-blur-bottom { bottom: 0; }
 .gradual-blur-top { top: 0; }
 .gradual-blur-inner, .gradual-blur-layer { position: absolute; inset: 0; pointer-events: none; }
-
-@keyframes gradual-blur-reveal {
-  from { opacity: 0; transform: translate3d(0,18px,0); }
-  to { opacity: var(--gradual-blur-opacity); transform: translate3d(0,0,0); }
-}
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .gradual-blur-inner {
@@ -36,8 +31,4 @@
     --gradual-blur-opacity: .68;
   }
   .gradual-blur-layer:nth-child(n+5) { display: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .gradual-blur { animation: none; }
 }

@@ -13,15 +13,6 @@ export default function App() {
   return (
     <>
       <GlobalInteractiveBackground />
-      <GradualBlur
-        position="bottom"
-        height="9rem"
-        strength={2.4}
-        divCount={8}
-        curve="bezier"
-        exponential
-        opacity={0.94}
-      />
       <ExhibitionHeader />
       <main className="app-main">
         <SceneTransitions />
@@ -30,6 +21,13 @@ export default function App() {
         <ToolStudio />
         <ToolUsageGuides />
         <DownloadsSection />
+        <GradualBlur
+          position="bottom"
+          target="parent"
+          strength={5}
+          divCount={6}
+          opacity={1}
+        />
       </main>
     </>
   )
