@@ -21,7 +21,6 @@ export function SceneTransitions() {
 
     const scenes = gsap.utils.toArray<HTMLElement>('[data-scene]', root)
     const background = document.querySelector<HTMLElement>('.global-interactive-background')
-    const scanLine = document.querySelector<HTMLElement>('.global-scan-line')
     const mm = gsap.matchMedia()
     let activeScene = ''
 
@@ -65,12 +64,6 @@ export function SceneTransitions() {
           ease: 'power2.out',
           overwrite: true,
         })
-      }
-      if (scanLine && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.fromTo(scanLine,
-          { autoAlpha: 0, y: -40 },
-          { autoAlpha: 0.72, y: window.innerHeight + 40, duration: 0.85, ease: 'power2.inOut', overwrite: true },
-        )
       }
     }
 

@@ -15,14 +15,13 @@ export default function App() {
       <GlobalInteractiveBackground />
       <GradualBlur
         position="bottom"
-        height="7rem"
-        strength={1.8}
-        divCount={6}
+        height="9rem"
+        strength={2.4}
+        divCount={8}
         curve="bezier"
         exponential
-        opacity={0.86}
+        opacity={0.94}
       />
-      <div className="global-scan-line" aria-hidden="true" />
       <ExhibitionHeader />
       <main className="app-main">
         <SceneTransitions />

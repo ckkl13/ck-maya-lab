@@ -73,17 +73,6 @@
 .global-particle-far { opacity: .48; transform: translate3d(var(--pointer-far-x),calc(var(--pointer-far-y) + var(--global-scroll-y)),0); }
 .global-particle-mid { opacity: .7; transform: translate3d(var(--pointer-mid-x),calc(var(--pointer-mid-y) + var(--global-scroll-y)),0); }
 .global-particle-near { transform: translate3d(var(--pointer-near-x),calc(var(--pointer-near-y) + var(--global-scroll-y)),0); }
-.global-scan-line {
-  position: fixed;
-  z-index: 85;
-  inset: 0 0 auto;
-  height: 1px;
-  opacity: 0;
-  background: linear-gradient(90deg, transparent 4%, rgba(70,215,197,.2) 28%, rgba(124,255,239,.9) 50%, rgba(70,215,197,.2) 72%, transparent 96%);
-  box-shadow: 0 0 18px rgba(70,215,197,.34);
-  transform: translate3d(0,-40px,0);
-  will-change: transform, opacity;
-}
 .scene-indicator {
   position: fixed;
   z-index: 90;
@@ -654,6 +643,5 @@ footer > span { color: #c4ccd2; font-weight: 800; }footer p { margin: 0; }footer
 @media (prefers-reduced-motion: reduce) {
   .hero-artwork-inner, .hero-frame, .hero-orbit, .hero-index { transform: none !important; }
   .global-light-field, .global-grid, .global-particle, [data-scene] { transform: none !important; opacity: 1 !important; }
-  .global-scan-line { display: none; }
   .scene-indicator > i > span { transform: none !important; }
 }
