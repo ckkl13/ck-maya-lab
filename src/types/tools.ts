@@ -21,6 +21,8 @@ export interface SceneNode {
   depth: number
   color?: string
   selected?: boolean
+  generated?: boolean
+  hidden?: boolean
 }
 
 export interface LogEntry {

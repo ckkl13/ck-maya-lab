@@ -11,6 +11,7 @@ interface MayaWindowProps {
   onUndo?: () => void
   onRedo?: () => void
   viewport?: React.ReactNode
+  onNodeSelect?: (id: string) => void
 }
 
 const nodeGlyph: Record<SceneNode['type'], string> = {
@@ -21,7 +22,7 @@ const nodeGlyph: Record<SceneNode['type'], string> = {
   constraint: 'K',
 }
 
-export function MayaWindow({ title, accent, nodes, logs, children, onReset, onUndo, onRedo, viewport }: MayaWindowProps) {
+export function MayaWindow({ title, accent, nodes, logs, children, onReset, onUndo, onRedo, viewport, onNodeSelect }: MayaWindowProps) {
   return (
     <div className="maya-window" style={{ '--tool-accent': accent } as React.CSSProperties}>
       <div className="maya-titlebar">
@@ -46,8 +47,13 @@ export function MayaWindow({ title, accent, nodes, logs, children, onReset, onUn
         <aside className="maya-outliner" aria-label="虚拟 Outliner">
           <div className="panel-title">Outliner <ChevronDown /></div>
           <div className="outliner-list">
-            {nodes.map((node) => (
-              <div key={node.id} className={`outliner-row ${node.selected ? 'is-selected' : ''}`} style={{ paddingLeft: 8 + node.depth * 14 }} data-node={node.id}>
+            {nodes.map((node) => onNodeSelect ? (
+              <button type="button" key={node.id} className={`outliner-row ${node.selected ? 'is-selected' : ''} ${node.generated ? 'is-generated' : ''} ${node.hidden ? 'is-hidden' : ''}`} style={{ paddingLeft: 8 + node.depth * 14 }} data-node={node.id} aria-pressed={Boolean(node.selected)} onClick={() => onNodeSelect(node.id)}>
+                <span className={`node-glyph type-${node.type}`}>{nodeGlyph[node.type]}</span>
+                <span>{node.name}</span>
+              </button>
+            ) : (
+              <div key={node.id} className={`outliner-row ${node.selected ? 'is-selected' : ''} ${node.generated ? 'is-generated' : ''} ${node.hidden ? 'is-hidden' : ''}`} style={{ paddingLeft: 8 + node.depth * 14 }} data-node={node.id}>
                 <span className={`node-glyph type-${node.type}`}>{nodeGlyph[node.type]}</span>
                 <span>{node.name}</span>
               </div>
