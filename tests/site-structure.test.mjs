@@ -37,7 +37,7 @@ test('tool exhibition layers an editorial depth field behind its work journey', 
   const css = await read('src/App.css')
   assert.match(exhibition, /exhibition-depth/)
   assert.match(exhibition, /exhibition-current/)
-  assert.match(exhibition, /work-visual img/)
+  assert.match(exhibition, /work-image-frame/)
   assert.match(exhibition, /scrub: 0\.9/)
   assert.match(css, /\.exhibition-depth/)
   assert.match(css, /\.work-visual::before/)
