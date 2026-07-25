@@ -1,5 +1,6 @@
 import { useRef, type CSSProperties } from 'react'
 import { usePointerField } from '../hooks/usePointerField'
+import { AuroraBackdrop } from './AuroraBackdrop'
 
 const particles = [
   { x: 8, y: 14, depth: 'far', line: 88, angle: 18 },
@@ -22,6 +23,7 @@ export function GlobalInteractiveBackground() {
 
   return (
     <div ref={scope} className="global-interactive-background" aria-hidden="true">
+      <AuroraBackdrop />
       <div className="global-light-field" />
       <div className="global-grid global-grid-far" />
       <div className="global-grid global-grid-near" />

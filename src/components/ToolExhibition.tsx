@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { ArrowDownToLine, ArrowUpRight } from 'lucide-react'
 import { gsap, useGSAP } from '../animation/gsap'
+import { TiltedCard } from './TiltedCard'
 import { tools } from '../data/tools'
 import type { ToolId } from '../types/tools'
 
@@ -49,7 +50,7 @@ export function ToolExhibition() {
         scrollTrigger: { trigger: scope.current, start: 'top bottom', end: 'bottom top', scrub: 1.1 },
       })
       works.forEach((work) => {
-        const imageLayer = work.querySelector('.work-image-frame')
+        const imageLayer = work.querySelector('.work-tilt-card')
         if (imageLayer) {
           gsap.to(imageLayer, {
             yPercent: -7,
@@ -63,7 +64,7 @@ export function ToolExhibition() {
         })
         timeline
           .from(work.querySelector('.work-number'), { autoAlpha: 0, x: -24, duration: 0.45 })
-          .from(work.querySelector('.work-visual'), { y: 34, scale: 0.97, duration: 0.75, ease: 'power3.out' }, '<0.04')
+          .from(work.querySelector('.work-tilt-card'), { y: 34, scale: 0.97, duration: 0.75, ease: 'power3.out' }, '<0.04')
           .from(work.querySelectorAll('.work-copy > *'), { autoAlpha: 0, y: 18, stagger: 0.07, duration: 0.46 }, '<0.16')
       })
     })
@@ -87,8 +88,16 @@ export function ToolExhibition() {
           <article id={`showcase-${tool.id}`} className={`exhibition-work tool-${tool.id} ${index % 2 ? 'is-reversed' : ''}`} key={tool.id}>
             <span className="work-number">0{index + 1}</span>
             <a className="work-visual" href={`#${tool.id}`} aria-label={`打开 ${tool.name} 交互演示`} onClick={(event) => openInStudio(tool.id, event)}>
-              <span className="work-image-frame"><img src={artwork[tool.id]} alt={`${tool.name} Maya 工具界面`} loading="lazy" /></span>
-              <span className="work-visual-label">VIEW INTERACTIVE UI <ArrowUpRight /></span>
+              <TiltedCard
+                className="work-tilt-card"
+                imageSrc={artwork[tool.id]}
+                altText={`${tool.name} Maya 工具界面`}
+                rotateAmplitude={4.5}
+                scaleOnHover={1.025}
+                focusable={false}
+                imageClassName="work-tilt-image"
+                overlay={<span className="work-visual-label">VIEW INTERACTIVE UI <ArrowUpRight /></span>}
+              />
             </a>
             <div className="work-copy">
               <p>{tool.category} · v{tool.version}</p>

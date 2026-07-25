@@ -37,7 +37,8 @@ test('tool exhibition layers an editorial depth field behind its work journey', 
   const css = await read('src/App.css')
   assert.match(exhibition, /exhibition-depth/)
   assert.match(exhibition, /exhibition-current/)
-  assert.match(exhibition, /work-image-frame/)
+  assert.match(exhibition, /<TiltedCard/)
+  assert.match(exhibition, /work-tilt-card/)
   assert.match(exhibition, /scrub: 0\.9/)
   assert.match(css, /\.exhibition-depth/)
   assert.match(css, /\.work-visual::before/)
@@ -253,7 +254,7 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
 test('tool showcase cards keep the stable link-based image interaction', async () => {
   const exhibition = await read('src/components/ToolExhibition.tsx')
   assert.match(exhibition, /<a className="work-visual"/)
-  assert.doesNotMatch(exhibition, /<TiltedCard/)
+  assert.match(exhibition, /<TiltedCard/)
   assert.doesNotMatch(exhibition, /work\.querySelector\('\.work-visual'\), \{ autoAlpha/)
 })
 

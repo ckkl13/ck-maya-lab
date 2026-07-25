@@ -1,4 +1,4 @@
-import { useRef, type MouseEvent, type PointerEvent, type ReactNode } from 'react'
+import { useRef, type PointerEvent, type ReactNode } from 'react'
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 import './TiltedCard.css'
 
@@ -9,8 +9,9 @@ interface TiltedCardProps {
   rotateAmplitude?: number
   scaleOnHover?: number
   onActiveChange?: (active: boolean) => void
-  onClick?: (event: MouseEvent<HTMLElement>) => void
   overlay?: ReactNode
+  imageClassName?: string
+  focusable?: boolean
 }
 
 const spring = { damping: 24, stiffness: 180, mass: 0.55 }
@@ -22,8 +23,9 @@ export function TiltedCard({
   rotateAmplitude = 7,
   scaleOnHover = 1.05,
   onActiveChange,
-  onClick,
   overlay,
+  imageClassName = '',
+  focusable = true,
 }: TiltedCardProps) {
   const ref = useRef<HTMLElement>(null)
   const active = useRef(false)
@@ -69,11 +71,10 @@ export function TiltedCard({
       onPointerLeave={deactivate}
       onFocus={activate}
       onBlur={deactivate}
-      onClick={onClick}
-      tabIndex={0}
+      tabIndex={focusable ? 0 : -1}
     >
       <motion.div className="tilted-card-inner" style={{ rotateX, rotateY, scale }}>
-        <img src={imageSrc} alt={altText} className="tilted-card-image" />
+        <img src={imageSrc} alt={altText} className={`tilted-card-image ${imageClassName}`.trim()} />
         {overlay}
       </motion.div>
     </motion.figure>
