@@ -25,7 +25,18 @@ export function ToolExhibition() {
   useGSAP(() => {
     const mm = gsap.matchMedia()
     mm.add('(prefers-reduced-motion: no-preference)', () => {
+      const intro = scope.current?.querySelector('.exhibition-intro')
       const works = gsap.utils.toArray<HTMLElement>('.exhibition-work')
+      if (intro) {
+        gsap.from(intro.querySelectorAll(':scope > *'), {
+          autoAlpha: 0,
+          y: 34,
+          stagger: 0.1,
+          duration: 0.72,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: intro, start: 'top 78%', toggleActions: 'play none none reverse' },
+        })
+      }
       gsap.to('.exhibition-depth-orbit', {
         rotation: 16,
         scale: 1.08,
@@ -38,6 +49,15 @@ export function ToolExhibition() {
         scrollTrigger: { trigger: scope.current, start: 'top bottom', end: 'bottom top', scrub: 1.1 },
       })
       works.forEach((work) => {
+        const imageLayer = work.querySelector('.work-visual img')
+        if (imageLayer) {
+          gsap.to(imageLayer, {
+            yPercent: -7,
+            scale: 1.045,
+            ease: 'none',
+            scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 0.9 },
+          })
+        }
         const timeline = gsap.timeline({
           scrollTrigger: { trigger: work, start: 'top 76%', toggleActions: 'play none none reverse' },
         })

@@ -581,7 +581,7 @@ footer > span { color: #c4ccd2; font-weight: 800; }footer p { margin: 0; }footer
 .work-visual { position: relative; display: block; min-height: 620px; overflow: hidden; border: 1px solid #343b40; background: radial-gradient(circle at 50% 45%, #23292d, #131719 72%); text-decoration: none; clip-path: inset(0); box-shadow: 0 32px 74px rgba(0,0,0,.24); transition: border-color .5s ease, box-shadow .5s ease; }
 .work-visual::before { content: ''; position: absolute; z-index: 2; inset: auto 0 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); transform: scaleX(.16); transform-origin: left center; transition: transform .7s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
 .work-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 68%, rgba(8,10,11,.76)); pointer-events: none; }
-.work-visual img { width: 100%; height: 100%; position: absolute; inset: 0; box-sizing: border-box; padding: clamp(18px, 3vw, 44px); object-fit: contain; object-position: center; transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .5s ease; }
+.work-visual img { width: 100%; height: 100%; position: absolute; inset: 0; box-sizing: border-box; padding: clamp(18px, 3vw, 44px); object-fit: contain; object-position: center; transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .5s ease; will-change: transform; }
 .tool-ck-tool .work-visual { min-height: 720px; }
 .tool-scripts-box .work-visual { min-height: 540px; }
 .work-visual > span { position: absolute; z-index: 2; right: 22px; bottom: 20px; display: inline-flex; align-items: center; gap: 10px; color: #d9e0e4; font: 9px/1 ui-monospace, Consolas, monospace; letter-spacing: .08em; }
