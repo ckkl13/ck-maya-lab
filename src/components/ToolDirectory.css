@@ -1,7 +1,11 @@
 .header-left-cluster { justify-self: start; display: flex; align-items: center; gap: 9px; }
-.tool-directory-trigger { position: relative; z-index: 190; height: 34px; display: inline-flex; align-items: center; gap: 7px; padding: 0 10px; border: 1px solid rgba(170,187,197,.2); border-radius: 3px; color: #9aa6ad; background: rgba(27,32,35,.82); font: 9px/1 ui-monospace, Consolas, monospace; letter-spacing: .08em; cursor: pointer; }
-.tool-directory-trigger svg { width: 14px; height: 14px; color: var(--cyan); }
-.tool-directory-trigger:hover, .tool-directory-trigger:focus-visible, .tool-directory-trigger.is-open { color: #e4ecef; border-color: rgba(70,215,197,.55); outline: none; }
+.tool-directory-trigger { position: relative; z-index: 190; width: 38px; height: 38px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(176,193,203,.16); border-radius: 9px; color: #aeb9c0; background: rgba(35,41,45,.88); box-shadow: inset 0 1px rgba(255,255,255,.04); cursor: pointer; transform-origin: 50% 100%; }
+.tool-directory-trigger::after { content: ''; position: absolute; inset: auto 28% 3px; height: 2px; border-radius: 2px; background: var(--cyan); opacity: 0; transform: scaleX(.5); transition: opacity .2s ease, transform .2s ease; }
+.tool-directory-trigger svg { width: 17px; height: 17px; color: currentColor; }
+.tool-directory-trigger:hover, .tool-directory-trigger:focus-visible, .tool-directory-trigger.is-open { color: #e9f2f5; border-color: rgba(70,215,197,.55); outline: none; }
+.tool-directory-trigger:hover::after, .tool-directory-trigger:focus-visible::after, .tool-directory-trigger.is-open::after { opacity: 1; transform: scaleX(1); }
+.tool-directory-trigger-label { position: absolute; left: 50%; bottom: calc(100% + 10px); padding: 6px 8px; border: 1px solid #3d474d; border-radius: 4px; color: #dfe8ec; background: #111518; font: 9px/1 ui-monospace, Consolas, monospace; white-space: nowrap; opacity: 0; pointer-events: none; transform: translate(-50%,5px); transition: opacity .18s ease, transform .18s ease; }
+.tool-directory-trigger:hover .tool-directory-trigger-label, .tool-directory-trigger:focus-visible .tool-directory-trigger-label { opacity: 1; transform: translate(-50%,0); }
 .tool-directory-shell { min-height: 100%; display: grid; grid-template-rows: auto 1fr auto; padding: 92px clamp(22px, 3vw, 42px) 30px; }
 .tool-directory-heading > span { display: inline-flex; align-items: center; gap: 8px; color: var(--cyan); font: 9px/1 ui-monospace, Consolas, monospace; letter-spacing: .14em; }
 .tool-directory-heading > span svg { width: 14px; }
@@ -25,10 +29,10 @@
 .tool-directory-actions button:hover, .tool-directory-actions button:focus-visible { color: #e2eaed; border-color: var(--catalog-accent); outline: none; }
 .tool-directory-footer { align-self: end; display: flex; justify-content: space-between; gap: 20px; padding-top: 24px; color: #556067; font: 8px/1 ui-monospace, Consolas, monospace; letter-spacing: .08em; }
 
-@media (max-width: 1080px) { .tool-directory-trigger span { display: none; } }
 @media (max-width: 760px) {
   .header-left-cluster { gap: 5px; }
-  .tool-directory-trigger { width: 34px; padding: 0; justify-content: center; }
+  .tool-directory-trigger { width: 32px; height: 32px; border-radius: 7px; }
+  .tool-directory-trigger svg { width: 15px; height: 15px; }
   .tool-directory-shell { min-height: 100svh; padding: 78px 18px 22px; }
   .tool-directory-heading h2 { font-size: 42px; }
   .tool-directory-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 22px; margin-top: 34px; }
@@ -42,5 +46,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tool-directory-card::before, .tool-directory-trigger { transition: none; }
+  .tool-directory-card::before, .tool-directory-trigger::after, .tool-directory-trigger-label { transition: none; }
 }

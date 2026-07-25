@@ -177,3 +177,15 @@ test('tool directory exposes both studio and guide destinations', async () => {
   assert.match(directory, /使用说明/)
   assert.match(guides, /tool-guide-select/)
 })
+
+test('tool directory matches the Dock interaction and links to tool showcases', async () => {
+  const directory = await read('src/components/ToolDirectory.tsx')
+  const exhibition = await read('src/components/ToolExhibition.tsx')
+  assert.match(directory, /motion\.button/)
+  assert.match(directory, /tool-directory-trigger-label/)
+  assert.match(directory, /openShowcase/)
+  assert.match(directory, /工具展示/)
+  assert.match(exhibition, /id=\{`showcase-\$\{tool\.id\}`\}/)
+  assert.match(exhibition, /查看效果/)
+  assert.doesNotMatch(exhibition, /查看界面/)
+})
