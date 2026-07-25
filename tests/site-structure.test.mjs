@@ -189,3 +189,12 @@ test('tool directory matches the Dock interaction and links to tool showcases', 
   assert.match(exhibition, /查看效果/)
   assert.doesNotMatch(exhibition, /查看界面/)
 })
+
+test('tool directory animates both its close icon and drawer exit', async () => {
+  const directory = await read('src/components/ToolDirectory.tsx')
+  const menu = await read('src/components/StaggeredMenu.tsx')
+  assert.match(directory, /AnimatePresence/)
+  assert.match(directory, /tool-directory-trigger-icon/)
+  assert.match(menu, /timeline\.current\?\.reverse\(\)/)
+  assert.match(menu, /onReverseComplete/)
+})

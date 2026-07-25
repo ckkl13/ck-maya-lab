@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowRight, BookOpen, Boxes, GalleryVerticalEnd, Menu, MousePointer2, X } from 'lucide-react'
-import { motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { gsap, useGSAP } from '../animation/gsap'
 import { toolCatalog } from '../data/toolCatalog'
 import type { ToolId } from '../types/tools'
@@ -72,7 +72,18 @@ export function ToolDirectory({ open, onOpenChange }: ToolDirectoryProps) {
         whileTap={reduceMotion ? undefined : { scale: 0.94 }}
         transition={{ type: 'spring', stiffness: 260, damping: 18, mass: 0.14 }}
       >
-        {open ? <X /> : <Menu />}
+        <AnimatePresence initial={false} mode="wait">
+          <motion.span
+            key={open ? 'close' : 'menu'}
+            className="tool-directory-trigger-icon"
+            initial={reduceMotion ? false : { opacity: 0, rotate: -55, scale: 0.55 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, rotate: 55, scale: 0.55 }}
+            transition={{ duration: reduceMotion ? 0 : 0.16, ease: 'easeOut' }}
+          >
+            {open ? <X /> : <Menu />}
+          </motion.span>
+        </AnimatePresence>
         <span className="tool-directory-trigger-label" role="tooltip">{open ? '关闭目录' : '工具目录'}</span>
       </motion.button>
 
