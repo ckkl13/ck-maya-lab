@@ -22,7 +22,7 @@ export const tools: ToolDefinition[] = [
     version: '1.2',
     mayaVersions: 'Maya 2022+',
     accent: '#ff725e',
-    screenshot: './media/ck-tool-ui.png',
+    screenshot: './media/exhibition/ck-tool.png',
     downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/ck-tool.zip',
     features: ['控制器形状库', '颜色与线宽', '关节控制器生成', 'Tag 工作流'],
   },

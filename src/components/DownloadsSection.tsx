@@ -1,7 +1,33 @@
-import { Download, FileArchive, GitBranch, MonitorCheck } from 'lucide-react'
+import { ArrowUpRight, Download, GitBranch } from 'lucide-react'
 import { tools } from '../data/tools'
-import { SpotlightPanel } from './SpotlightPanel'
 
 export function DownloadsSection() {
-  return <section className="downloads-section" id="downloads"><div className="downloads-header"><div><h2>工具下载</h2><p>下载包由当前正式源码生成，并排除备份、缓存、虚拟环境和 Graphify 分析产物。</p></div><a href="https://github.com/ckkl13/ck-maya-lab/releases" target="_blank" rel="noreferrer"><GitBranch />GitHub Releases</a></div><div className="download-list">{tools.map((tool) => <SpotlightPanel key={tool.id} className="download-row" color={`${tool.accent}18`}><div className="download-icon" style={{ color: tool.accent }}><FileArchive /></div><div className="download-main"><span>{tool.category}</span><h3>{tool.name}</h3><p>{tool.features.join(' · ')}</p></div><div className="download-meta"><span><MonitorCheck />{tool.mayaVersions}</span><span>v{tool.version}</span></div><a href={tool.downloadFile} download><Download />下载 ZIP</a></SpotlightPanel>)}</div><p className="download-note">Scripts Box 中的内置脚本在公开发布前仍需完成来源与许可证确认。网页演示不会执行任何 Python 或 MEL 文本。</p></section>
+  return (
+    <section className="downloads-section" id="downloads">
+      <div className="download-field" aria-hidden="true" />
+      <header className="downloads-header">
+        <span>FINAL ROOM / DOWNLOAD ARCHIVE</span>
+        <h2>带走你的下一件 Maya 工具</h2>
+        <p>所有下载均为静态 ZIP 包。网页不会连接 Maya，也不会执行任何 Python 或 MEL。</p>
+      </header>
+      <div className="download-list">
+        {tools.map((tool, index) => (
+          <article className="download-row" key={tool.id}>
+            <span>0{index + 1}</span>
+            <div className="download-main"><small>{tool.category} · v{tool.version}</small><h3>{tool.name}</h3></div>
+            <p>{tool.mayaVersions}<br />{tool.features.join(' · ')}</p>
+            <a href={tool.downloadFile} download><Download />下载 ZIP</a>
+          </article>
+        ))}
+      </div>
+      <footer className="exhibition-footer">
+        <div><strong>CK MAYA LAB</strong><span>Last update · 2026.07.25</span></div>
+        <p>面向绑定师和动画师的 Maya 工具展览与交互文档。</p>
+        <nav>
+          <a href="./docs/TOOLS_USAGE.md">使用手册<ArrowUpRight /></a>
+          <a href="https://github.com/ckkl13/ck-maya-lab/releases" target="_blank" rel="noreferrer"><GitBranch />GitHub Releases</a>
+        </nav>
+      </footer>
+    </section>
+  )
 }
