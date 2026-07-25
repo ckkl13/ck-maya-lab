@@ -97,3 +97,16 @@ test('global pointer interaction stays frame-batched and outside React state', a
   assert.match(hook, /--global-pointer-y/)
   assert.doesNotMatch(hook, /useState/)
 })
+
+test('scene indicator derives its initial value from the viewport center', async () => {
+  const transitions = await read('src/components/SceneTransitions.tsx')
+  assert.match(transitions, /getBoundingClientRect/)
+  assert.match(transitions, /window\.innerHeight\s*\/\s*2/)
+})
+
+test('scene coordinator owns a mounted lifecycle scope', async () => {
+  const transitions = await read('src/components/SceneTransitions.tsx')
+  assert.match(transitions, /indicatorRef/)
+  assert.match(transitions, /ref=\{indicatorRef\}/)
+  assert.match(transitions, /querySelector<HTMLElement>\('\.app-main'\)/)
+})

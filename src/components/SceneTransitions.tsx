@@ -1,9 +1,5 @@
-import { useRef, type RefObject } from 'react'
+import { useRef } from 'react'
 import { ScrollTrigger, gsap, useGSAP } from '../animation/gsap'
-
-type SceneTransitionsProps = {
-  scope: RefObject<HTMLElement | null>
-}
 
 const sceneNames: Record<string, string> = {
   hero: 'INTRO',
@@ -13,13 +9,14 @@ const sceneNames: Record<string, string> = {
   downloads: 'DOWNLOAD',
 }
 
-export function SceneTransitions({ scope }: SceneTransitionsProps) {
+export function SceneTransitions() {
+  const indicatorRef = useRef<HTMLElement>(null)
   const indexRef = useRef<HTMLSpanElement>(null)
   const labelRef = useRef<HTMLSpanElement>(null)
   const progressRef = useRef<HTMLSpanElement>(null)
 
   useGSAP(() => {
-    const root = scope.current
+    const root = document.querySelector<HTMLElement>('.app-main')
     if (!root) return
 
     const scenes = gsap.utils.toArray<HTMLElement>('[data-scene]', root)
@@ -27,6 +24,28 @@ export function SceneTransitions({ scope }: SceneTransitionsProps) {
     const scanLine = document.querySelector<HTMLElement>('.global-scan-line')
     const mm = gsap.matchMedia()
     let activeScene = ''
+
+    const findSceneAtViewportCenter = () => {
+      const viewportCenter = window.innerHeight / 2
+      let closestScene = scenes[0]
+      let closestDistance = Number.POSITIVE_INFINITY
+
+      scenes.forEach((scene) => {
+        const bounds = scene.getBoundingClientRect()
+        if (bounds.top <= viewportCenter && bounds.bottom >= viewportCenter) {
+          closestScene = scene
+          closestDistance = 0
+          return
+        }
+        const distance = Math.min(Math.abs(bounds.top - viewportCenter), Math.abs(bounds.bottom - viewportCenter))
+        if (distance < closestDistance) {
+          closestScene = scene
+          closestDistance = distance
+        }
+      })
+
+      return closestScene
+    }
 
     const activate = (scene: HTMLElement) => {
       const name = scene.dataset.scene ?? 'hero'
@@ -95,21 +114,12 @@ export function SceneTransitions({ scope }: SceneTransitionsProps) {
           })
         }
 
-        scenes.forEach((scene) => {
-          ScrollTrigger.create({
-            trigger: scene,
-            start: 'top center',
-            end: 'bottom center',
-            onEnter: () => activate(scene),
-            onEnterBack: () => activate(scene),
-          })
-        })
-
         const progressTrigger = ScrollTrigger.create({
           trigger: document.documentElement,
           start: 'top top',
           end: 'bottom bottom',
           onUpdate: ({ progress }) => {
+            activate(findSceneAtViewportCenter())
             if (progressRef.current) gsap.set(progressRef.current, { scaleY: progress })
             if (background && conditions?.motion) {
               background.style.setProperty('--global-scroll-y', `${progress * -72}px`)
@@ -117,7 +127,7 @@ export function SceneTransitions({ scope }: SceneTransitionsProps) {
           },
         })
 
-        activate(scenes[0])
+        activate(findSceneAtViewportCenter())
         return () => progressTrigger.kill()
       },
     )
@@ -126,10 +136,10 @@ export function SceneTransitions({ scope }: SceneTransitionsProps) {
       mm.revert()
       background?.style.removeProperty('--global-scroll-y')
     }
-  }, { scope })
+  }, { scope: indicatorRef })
 
   return (
-    <aside className="scene-indicator" aria-hidden="true">
+    <aside ref={indicatorRef} className="scene-indicator" aria-hidden="true">
       <span ref={indexRef} className="scene-indicator-index">01</span>
       <span ref={labelRef} className="scene-indicator-label">INTRO</span>
       <i><span ref={progressRef} /></i>
