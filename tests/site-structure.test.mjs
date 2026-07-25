@@ -62,3 +62,38 @@ test('the usage guide uses a dark exhibition surface', async () => {
   assert.match(css, /\.guide-workspace \{[^}]*background: #15191c;/)
   assert.match(css, /\.guide-chapter-panel \{[^}]*background: #121619;/)
 })
+
+test('app mounts one global interactive background and scene coordinator', async () => {
+  const app = await read('src/App.tsx')
+  assert.equal((app.match(/<GlobalInteractiveBackground/g) ?? []).length, 1)
+  assert.equal((app.match(/<SceneTransitions/g) ?? []).length, 1)
+})
+
+test('all five primary sections expose stable scene markers', async () => {
+  const files = [
+    'src/components/HeroExhibition.tsx',
+    'src/components/ToolExhibition.tsx',
+    'src/components/ToolStudio.tsx',
+    'src/components/ToolUsageGuides.tsx',
+    'src/components/DownloadsSection.tsx',
+  ]
+  for (const file of files) {
+    assert.match(await read(file), /data-scene=/)
+  }
+})
+
+test('global background is decorative, non-blocking, and motion aware', async () => {
+  const component = await read('src/components/GlobalInteractiveBackground.tsx')
+  const css = await read('src/App.css')
+  assert.match(component, /aria-hidden="true"/)
+  assert.match(css, /\.global-interactive-background\s*\{[^}]*pointer-events:\s*none/)
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/)
+})
+
+test('global pointer interaction stays frame-batched and outside React state', async () => {
+  const hook = await read('src/hooks/usePointerField.ts')
+  assert.match(hook, /requestAnimationFrame/)
+  assert.match(hook, /--global-pointer-x/)
+  assert.match(hook, /--global-pointer-y/)
+  assert.doesNotMatch(hook, /useState/)
+})
