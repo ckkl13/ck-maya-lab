@@ -84,7 +84,7 @@ export default function CkToolDemo() {
 
         <div className="ck-window-body">
           <button type="button" className="ck-siri" title="重置界面" onClick={reset}>
-            <span /><i /><b />
+            <img className="ck-siri-image" src="./media/ck-tool-siri.gif" alt="" />
           </button>
           <div className="ck-divider" />
 

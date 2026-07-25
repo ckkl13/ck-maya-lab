@@ -70,7 +70,7 @@ export function ToolStudio() {
         const Icon = toolIcons[tool.id]
         return <button type="button" key={tool.id} className={tool.id === activeId ? 'is-active' : ''} aria-pressed={tool.id === activeId} onClick={() => selectTool(tool.id)} onPointerUp={(event) => event.currentTarget.blur()} style={{ '--item-accent': tool.accent } as React.CSSProperties}><span className="tool-index">0{index + 1}</span><Icon /><span><b>{tool.shortName}</b><small>{tool.category}</small></span></button>
       })}</nav>
-      <SpotlightPanel className="active-tool-brief" color={`${activeTool.accent}20`}>{activeTool.screenshot ? <img src={activeTool.screenshot} alt={`${activeTool.name} 在 Maya 中的真实界面`} /> : null}<span>{activeTool.version}</span><h1>{activeTool.name}</h1><p>{activeTool.summary}</p><div className="compat-line"><span>{activeTool.mayaVersions}</span><span>Windows</span></div><a href="#downloads" className="sidebar-download"><Download />获取工具</a></SpotlightPanel>
+      <SpotlightPanel className="active-tool-brief" color={`${activeTool.accent}20`}><span>{activeTool.version}</span><h1>{activeTool.name}</h1><p>{activeTool.summary}</p><div className="compat-line"><span>{activeTool.mayaVersions}</span><span>{activeTool.platforms}</span></div><a href="#downloads" className="sidebar-download"><Download />获取工具</a></SpotlightPanel>
     </aside>
     <div className="studio-stage" style={{ '--active-accent': activeTool.accent } as React.CSSProperties}>
       <div className="stage-bar"><span><i /> WEB INTERACTIVE DEMO</span><div><button type="button" onClick={() => document.getElementById('guide')?.scrollIntoView({ behavior: 'smooth' })}>使用说明 <ExternalLink /></button></div></div>

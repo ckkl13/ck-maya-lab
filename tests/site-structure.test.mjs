@@ -36,3 +36,29 @@ test('the mobile hero headline fits within the narrow viewport', async () => {
   const css = await read('src/App.css')
   assert.match(css, /@media \(max-width: 520px\)[\s\S]*?\.hero-copy h1 \{ font-size: 13vw;/)
 })
+
+test('all tools share the approved compatibility copy', async () => {
+  const tools = await read('src/data/tools.ts')
+  const types = await read('src/types/tools.ts')
+  assert.equal([...tools.matchAll(/mayaVersions: 'Maya 2022\+'/g)].length, 3)
+  assert.equal([...tools.matchAll(/platforms: 'Windows\.Mac'/g)].length, 3)
+  assert.match(types, /platforms: string/)
+})
+
+test('the studio does not render CK Tool sidebar artwork', async () => {
+  const studio = await read('src/components/ToolStudio.tsx')
+  assert.doesNotMatch(studio, /activeTool\.screenshot/)
+})
+
+test('CK Tool uses the supplied Siri GIF in the existing orb control', async () => {
+  const ckTool = await read('src/demos/CkToolDemo.tsx')
+  assert.match(ckTool, /ck-tool-siri\.gif/)
+  assert.match(ckTool, /className="ck-siri-image"/)
+})
+
+test('the usage guide uses a dark exhibition surface', async () => {
+  const css = await read('src/App.css')
+  assert.match(css, /\.usage-guides \{[^}]*background: #0b0d0f;/)
+  assert.match(css, /\.guide-workspace \{[^}]*background: #15191c;/)
+  assert.match(css, /\.guide-chapter-panel \{[^}]*background: #121619;/)
+})

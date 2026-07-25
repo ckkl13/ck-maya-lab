@@ -15,7 +15,7 @@ export function DownloadsSection() {
           <article className="download-row" key={tool.id}>
             <span>0{index + 1}</span>
             <div className="download-main"><small>{tool.category} · v{tool.version}</small><h3>{tool.name}</h3></div>
-            <p>{tool.mayaVersions}<br />{tool.features.join(' · ')}</p>
+            <p>{tool.mayaVersions} · {tool.platforms}<br />{tool.features.join(' · ')}</p>
             <a href={tool.downloadFile} download><Download />下载 ZIP</a>
           </article>
         ))}

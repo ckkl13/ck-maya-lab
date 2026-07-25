@@ -48,7 +48,7 @@ export function ToolExhibition() {
       </header>
       <div className="exhibition-works">
         {tools.map((tool, index) => (
-          <article className={`exhibition-work ${index % 2 ? 'is-reversed' : ''}`} key={tool.id}>
+          <article className={`exhibition-work tool-${tool.id} ${index % 2 ? 'is-reversed' : ''}`} key={tool.id}>
             <span className="work-number">0{index + 1}</span>
             <a className="work-visual" href={`#${tool.id}`} aria-label={`打开 ${tool.name} 交互演示`} onClick={(event) => openInStudio(tool.id, event)}>
               <img src={artwork[tool.id]} alt={`${tool.name} Maya 工具界面`} loading="lazy" />
@@ -59,7 +59,7 @@ export function ToolExhibition() {
               <h3>{tool.name}</h3>
               <strong>{tool.summary}</strong>
               <ul>{tool.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
-              <div className="work-meta"><span>{tool.mayaVersions}</span><span>WINDOWS</span></div>
+              <div className="work-meta"><span>{tool.mayaVersions}</span><span>{tool.platforms}</span></div>
               <div className="work-actions">
                 <a href={`#${tool.id}`} onClick={(event) => openInStudio(tool.id, event)}>查看界面<ArrowUpRight /></a>
                 <a href={tool.downloadFile} download>下载 ZIP<ArrowDownToLine /></a>

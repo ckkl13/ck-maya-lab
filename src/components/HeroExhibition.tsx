@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { ArrowDown, MoveDownRight } from 'lucide-react'
 import { gsap, useGSAP } from '../animation/gsap'
+import { tools } from '../data/tools'
 import { usePointerField } from '../hooks/usePointerField'
 
 const frames = [
@@ -48,7 +49,7 @@ export function HeroExhibition() {
         </h1>
         <div className="hero-summary">
           <p>把 Maya 绑定与脚本工具当作数字作品展示。进入真实界面，理解每一个控件，再下载到自己的工作流。</p>
-          <div><span>03 件工具</span><span>Maya 2021-2026</span><span>Windows</span></div>
+          <div><span>03 件工具</span><span>{tools[0].mayaVersions}</span><span>{tools[0].platforms}</span></div>
           <a href="#works">进入展览<ArrowDown /></a>
         </div>
       </div>

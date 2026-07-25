@@ -8,8 +8,8 @@ export interface ToolDefinition {
   category: string
   version: string
   mayaVersions: string
+  platforms: string
   accent: string
-  screenshot?: string
   downloadFile: string
   features: string[]
 }
