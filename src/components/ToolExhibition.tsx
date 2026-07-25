@@ -40,7 +40,7 @@ export function ToolExhibition() {
   }, { scope })
 
   return (
-    <section ref={scope} className="tool-exhibition" id="works">
+    <section ref={scope} className="tool-exhibition" id="works" data-scene="works" data-scene-index="02">
       <header className="exhibition-intro">
         <span>SELECTED WORKS / 2026</span>
         <h2>三件工具，三种 Maya 工作方式</h2>

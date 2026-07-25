@@ -39,7 +39,7 @@ export function HeroExhibition() {
   }, { scope })
 
   return (
-    <section ref={scope} className="hero-exhibition" id="top">
+    <section ref={scope} className="hero-exhibition" id="top" data-scene="hero" data-scene-index="01">
       <div className="hero-field" aria-hidden="true" />
       <div className="hero-copy">
         <p className="hero-kicker"><span>数字艺术工具展览</span><span>2026 / MAYA</span></p>

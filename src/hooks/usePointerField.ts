@@ -1,6 +1,10 @@
 import { useEffect, type RefObject } from 'react'
 
-export function usePointerField(scope: RefObject<HTMLElement | null>) {
+type PointerFieldOptions = {
+  viewport?: boolean
+}
+
+export function usePointerField(scope: RefObject<HTMLElement | null>, options: PointerFieldOptions = {}) {
   useEffect(() => {
     const root = scope.current
     if (!root) return
@@ -21,13 +25,20 @@ export function usePointerField(scope: RefObject<HTMLElement | null>) {
       root.style.setProperty('--pointer-near-y', `${nextY * 13}px`)
       root.style.setProperty('--pointer-light-x', `${(nextX + 1) * 50}%`)
       root.style.setProperty('--pointer-light-y', `${(nextY + 1) * 50}%`)
+      root.style.setProperty('--global-pointer-x', `${(nextX + 1) * 50}%`)
+      root.style.setProperty('--global-pointer-y', `${(nextY + 1) * 50}%`)
     }
 
     const onPointerMove = (event: PointerEvent) => {
       if (reduced.matches || !finePointer.matches) return
-      const bounds = root.getBoundingClientRect()
-      nextX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2
-      nextY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2
+      if (options.viewport) {
+        nextX = (event.clientX / window.innerWidth - 0.5) * 2
+        nextY = (event.clientY / window.innerHeight - 0.5) * 2
+      } else {
+        const bounds = root.getBoundingClientRect()
+        nextX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2
+        nextY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2
+      }
       if (!frame) frame = requestAnimationFrame(render)
     }
 
@@ -37,12 +48,15 @@ export function usePointerField(scope: RefObject<HTMLElement | null>) {
       if (!frame) frame = requestAnimationFrame(render)
     }
 
-    root.addEventListener('pointermove', onPointerMove)
-    root.addEventListener('pointerleave', reset)
+    const target = options.viewport ? window : root
+    target.addEventListener('pointermove', onPointerMove as EventListener)
+    target.addEventListener('pointerleave', reset)
+    if (options.viewport) window.addEventListener('blur', reset)
     return () => {
-      root.removeEventListener('pointermove', onPointerMove)
-      root.removeEventListener('pointerleave', reset)
+      target.removeEventListener('pointermove', onPointerMove as EventListener)
+      target.removeEventListener('pointerleave', reset)
+      if (options.viewport) window.removeEventListener('blur', reset)
       if (frame) cancelAnimationFrame(frame)
     }
-  }, [scope])
+  }, [options.viewport, scope])
 }

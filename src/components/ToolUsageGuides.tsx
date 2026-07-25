@@ -63,7 +63,7 @@ export function ToolUsageGuides() {
   }
 
   return (
-    <section ref={scope} className="usage-guides" id="guide" style={{ '--guide-accent': guide.accent } as CSSProperties}>
+    <section ref={scope} className="usage-guides" id="guide" data-scene="guide" data-scene-index="04" style={{ '--guide-accent': guide.accent } as CSSProperties}>
       <span ref={progress} className="guide-scroll-progress" aria-hidden="true" />
       <header className="guide-heading">
         <div>

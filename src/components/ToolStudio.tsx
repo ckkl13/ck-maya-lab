@@ -58,7 +58,7 @@ export function ToolStudio() {
     } })
   }
 
-  return <section ref={scope} className="tool-studio" id="studio">
+  return <section ref={scope} className="tool-studio" id="studio" data-scene="studio" data-scene-index="03">
     <header className="studio-intro">
       <span>ROOM 03 / INTERACTIVE INSTALLATION</span>
       <h2>进入真实的 Maya 工具界面</h2>

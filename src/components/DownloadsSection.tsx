@@ -3,7 +3,7 @@ import { tools } from '../data/tools'
 
 export function DownloadsSection() {
   return (
-    <section className="downloads-section" id="downloads">
+    <section className="downloads-section" id="downloads" data-scene="downloads" data-scene-index="05">
       <div className="download-field" aria-hidden="true" />
       <header className="downloads-header">
         <span>FINAL ROOM / DOWNLOAD ARCHIVE</span>
