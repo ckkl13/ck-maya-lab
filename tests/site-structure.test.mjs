@@ -32,6 +32,15 @@ test('pointer interaction avoids React state updates', async () => {
   assert.match(hook, /prefers-reduced-motion/)
 })
 
+test('pointer light eases back to center after leaving its scope', async () => {
+  const hook = await read('src/hooks/usePointerField.ts')
+  assert.match(hook, /currentX/)
+  assert.match(hook, /targetX/)
+  assert.match(hook, /returning/)
+  assert.match(hook, /currentX \+= \(targetX - currentX\)/)
+  assert.match(hook, /targetX = 0/)
+})
+
 test('the mobile hero headline fits within the narrow viewport', async () => {
   const css = await read('src/App.css')
   assert.match(css, /@media \(max-width: 520px\)[\s\S]*?\.hero-copy h1 \{ font-size: 13vw;/)
