@@ -225,6 +225,14 @@ test('tool directory matches the Dock interaction and links to tool showcases', 
   assert.doesNotMatch(exhibition, /查看界面/)
 })
 
+test('primary page actions reuse the Dock hover language without styling every control', async () => {
+  const css = await read('src/App.css')
+  assert.match(css, /Dock-inspired feedback/)
+  assert.match(css, /\.work-actions a::after/)
+  assert.match(css, /\.download-row > a::after/)
+  assert.match(css, /@media \(hover: hover\) and \(pointer: fine\)/)
+})
+
 test('tool directory animates both its close icon and drawer exit', async () => {
   const directory = await read('src/components/ToolDirectory.tsx')
   const menu = await read('src/components/StaggeredMenu.tsx')
