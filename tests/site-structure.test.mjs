@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { readFile, stat } from 'node:fs/promises'
 import test from 'node:test'
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8')
@@ -32,13 +32,13 @@ test('pointer interaction avoids React state updates', async () => {
   assert.match(hook, /prefers-reduced-motion/)
 })
 
-test('pointer light eases back to center after leaving its scope', async () => {
+test('pointer light keeps following without resetting after leaving a scope', async () => {
   const hook = await read('src/hooks/usePointerField.ts')
   assert.match(hook, /currentX/)
   assert.match(hook, /targetX/)
-  assert.match(hook, /returning/)
   assert.match(hook, /currentX \+= \(targetX - currentX\)/)
-  assert.match(hook, /targetX = 0/)
+  assert.doesNotMatch(hook, /pointerleave/)
+  assert.doesNotMatch(hook, /const reset/)
 })
 
 test('the mobile hero headline fits within the narrow viewport', async () => {
@@ -230,6 +230,19 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
   assert.match(css, /\.hero-frame\.is-active\s*\{[^}]*z-index:\s*10/)
   assert.match(css, /\.hero-frame img\s*\{[^}]*object-fit:\s*cover/)
   assert.match(css, /\.hero-frame-rig\s*\{[^}]*aspect-ratio:\s*390\s*\/\s*498/)
-  assert.match(css, /\.hero-frame-ck\s*\{[^}]*aspect-ratio:\s*488\s*\/\s*1016/)
+  assert.match(css, /\.hero-frame-ck\s*\{[^}]*aspect-ratio:\s*488\s*\/\s*1012/)
   assert.doesNotMatch(css, /\.hero-frame\s*\{[^}]*border:/)
+})
+
+test('hero artwork does not include an extra direction arrow', async () => {
+  const hero = await read('src/components/HeroExhibition.tsx')
+  assert.doesNotMatch(hero, /MoveDownRight/)
+  assert.doesNotMatch(hero, /hero-direction/)
+})
+
+test('hero artwork ships high-resolution Maya screenshots', async () => {
+  for (const image of ['rig-box.png', 'ck-tool.png', 'scripts-box.png']) {
+    const file = await stat(new URL(`../public/media/exhibition/${image}`, import.meta.url))
+    assert.ok(file.size > 200_000)
+  }
 })

@@ -16,10 +16,9 @@ export function usePointerField(scope: RefObject<HTMLElement | null>, options: P
     let currentY = 0
     let targetX = 0
     let targetY = 0
-    let returning = false
 
     const render = () => {
-      const follow = returning ? 0.13 : 0.22
+      const follow = 0.22
       currentX += (targetX - currentX) * follow
       currentY += (targetY - currentY) * follow
 
@@ -27,7 +26,6 @@ export function usePointerField(scope: RefObject<HTMLElement | null>, options: P
       if (settled) {
         currentX = targetX
         currentY = targetY
-        returning = false
       }
 
       root.style.setProperty('--pointer-far-x', `${currentX * 5}px`)
@@ -63,25 +61,13 @@ export function usePointerField(scope: RefObject<HTMLElement | null>, options: P
         targetX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2
         targetY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2
       }
-      returning = false
-      queueRender()
-    }
-
-    const reset = () => {
-      targetX = 0
-      targetY = 0
-      returning = true
       queueRender()
     }
 
     const target = options.viewport ? window : root
     target.addEventListener('pointermove', onPointerMove as EventListener)
-    target.addEventListener('pointerleave', reset)
-    if (options.viewport) window.addEventListener('blur', reset)
     return () => {
       target.removeEventListener('pointermove', onPointerMove as EventListener)
-      target.removeEventListener('pointerleave', reset)
-      if (options.viewport) window.removeEventListener('blur', reset)
       if (frame) cancelAnimationFrame(frame)
     }
   }, [options.viewport, scope])

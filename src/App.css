@@ -553,14 +553,13 @@ footer > span { color: #c4ccd2; font-weight: 800; }footer p { margin: 0; }footer
 .hero-artwork-inner { position: absolute; inset: 2% -8% -4% 0; transform: translate3d(var(--pointer-mid-x),var(--pointer-mid-y),0); transition: transform .55s cubic-bezier(.2,.8,.2,1); }
 .hero-orbit { position: absolute; inset: 8% 10% 4% 7%; border: 1px solid rgba(124,141,151,.18); border-radius: 50%; transform: translate3d(var(--pointer-far-x),var(--pointer-far-y),0) rotate(-17deg); }
 .hero-frame { position: absolute; margin: 0; transition: filter .28s ease; }
-.hero-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
+.hero-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; image-rendering: auto; }
 .hero-frame.is-active { z-index: 10; filter: brightness(1.07) saturate(1.05); }
 .hero-frame.is-active .tilted-card-inner { box-shadow: 0 28px 68px rgba(0,0,0,.48), 0 0 0 1px rgba(70,215,197,.3); }
 .hero-frame-rig { z-index: 3; width: 38%; height: auto; aspect-ratio: 390 / 498; left: 34%; top: 18%; transform: translate3d(var(--pointer-near-x),var(--pointer-near-y),0) rotate(-1.3deg); }
-.hero-frame-ck { z-index: 2; width: auto; height: 72%; aspect-ratio: 488 / 1016; left: 1%; top: 2%; transform: translate3d(var(--pointer-mid-x),var(--pointer-mid-y),0) rotate(-5deg); }
+.hero-frame-ck { z-index: 2; width: auto; height: 72%; aspect-ratio: 488 / 1012; left: 1%; top: 2%; transform: translate3d(var(--pointer-mid-x),var(--pointer-mid-y),0) rotate(-5deg); }
 .hero-frame-scripts { z-index: 1; width: 60%; height: auto; aspect-ratio: 992 / 720; right: -1%; bottom: 2%; transform: translate3d(var(--pointer-far-x),var(--pointer-far-y),0) rotate(4deg); }
 .hero-index { position: absolute; z-index: 5; right: 3%; top: 5%; color: rgba(225,232,236,.26); font: 700 clamp(46px, 6vw, 90px)/1 ui-monospace, monospace; letter-spacing: -.08em; transform: translate3d(var(--pointer-near-x),var(--pointer-near-y),0); }
-.hero-direction { position: absolute; z-index: 5; right: 7%; bottom: 10%; width: 32px; height: 32px; color: var(--cyan); }
 .hero-edge-label { position: absolute; right: 22px; bottom: 24px; margin: 0; color: #515a60; font: 8px/1 ui-monospace, Consolas, monospace; writing-mode: vertical-rl; letter-spacing: .15em; }
 
 .tool-exhibition { position: relative; padding: 125px clamp(22px, 5vw, 76px) 150px; overflow: hidden; background: #0e1113; background: rgba(14,17,19,.84); }
