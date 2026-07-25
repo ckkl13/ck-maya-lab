@@ -2,6 +2,9 @@
 
 三个 Maya 工具的交互展示、使用说明与下载网站。
 
+- 在线网站：https://ckkl13.github.io/ck-maya-lab/
+- 下载页面：https://github.com/ckkl13/ck-maya-lab/releases/tag/maya-tools-2026.07
+
 ## 本地运行
 
 ```bash
@@ -27,6 +30,6 @@ Vite 使用相对 `base`，因此 GitHub 用户站点、项目站点和自定义
 
 ## 下载包
 
-当前本地下载包位于 `public/downloads/`。正式发布时建议将 ZIP 上传到 GitHub Releases，并把 `src/data/tools.ts` 中的 `downloadFile` 改为对应 Release 地址，避免网站源码仓库长期保存大文件。
+本地下载包位于 `public/downloads/`，并通过 `.gitignore` 排除，不进入源码历史。正式下载文件托管在 GitHub Release `maya-tools-2026.07`，网站按钮直接指向对应附件。
 
 Scripts Box 的内置脚本在公开发布前必须完成来源与许可证确认。
