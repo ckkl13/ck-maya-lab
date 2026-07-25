@@ -26,13 +26,24 @@ export function ToolExhibition() {
     const mm = gsap.matchMedia()
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       const works = gsap.utils.toArray<HTMLElement>('.exhibition-work')
+      gsap.to('.exhibition-depth-orbit', {
+        rotation: 16,
+        scale: 1.08,
+        ease: 'none',
+        scrollTrigger: { trigger: scope.current, start: 'top bottom', end: 'bottom top', scrub: 0.9 },
+      })
+      gsap.to('.exhibition-current', {
+        xPercent: 14,
+        ease: 'none',
+        scrollTrigger: { trigger: scope.current, start: 'top bottom', end: 'bottom top', scrub: 1.1 },
+      })
       works.forEach((work) => {
         const timeline = gsap.timeline({
           scrollTrigger: { trigger: work, start: 'top 76%', toggleActions: 'play none none reverse' },
         })
         timeline
           .from(work.querySelector('.work-number'), { autoAlpha: 0, x: -24, duration: 0.45 })
-          .from(work.querySelector('.work-visual'), { autoAlpha: 0, clipPath: 'inset(12% 8% 12% 8%)', scale: 0.97, duration: 0.75 }, '<0.04')
+          .from(work.querySelector('.work-visual'), { autoAlpha: 0, y: 34, scale: 0.97, duration: 0.75, ease: 'power3.out' }, '<0.04')
           .from(work.querySelectorAll('.work-copy > *'), { autoAlpha: 0, y: 18, stagger: 0.07, duration: 0.46 }, '<0.16')
       })
     })
@@ -41,6 +52,11 @@ export function ToolExhibition() {
 
   return (
     <section ref={scope} className="tool-exhibition" id="works" data-scene="works" data-scene-index="02">
+      <div className="exhibition-depth" aria-hidden="true">
+        <i className="exhibition-depth-orbit" />
+        <i className="exhibition-current exhibition-current-a" />
+        <i className="exhibition-current exhibition-current-b" />
+      </div>
       <header className="exhibition-intro">
         <span>SELECTED WORKS / 2026</span>
         <h2>三件工具，三种 Maya 工作方式</h2>

@@ -32,6 +32,15 @@ test('pointer interaction avoids React state updates', async () => {
   assert.match(hook, /prefers-reduced-motion/)
 })
 
+test('tool exhibition layers an editorial depth field behind its work journey', async () => {
+  const exhibition = await read('src/components/ToolExhibition.tsx')
+  const css = await read('src/App.css')
+  assert.match(exhibition, /exhibition-depth/)
+  assert.match(exhibition, /exhibition-current/)
+  assert.match(css, /\.exhibition-depth/)
+  assert.match(css, /\.work-visual::before/)
+})
+
 test('pointer light keeps following without resetting after leaving a scope', async () => {
   const hook = await read('src/hooks/usePointerField.ts')
   assert.match(hook, /currentX/)
