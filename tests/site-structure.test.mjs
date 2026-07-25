@@ -110,3 +110,70 @@ test('scene coordinator owns a mounted lifecycle scope', async () => {
   assert.match(transitions, /ref=\{indicatorRef\}/)
   assert.match(transitions, /querySelector<HTMLElement>\('\.app-main'\)/)
 })
+
+test('app mounts one page-bottom GradualBlur', async () => {
+  const app = await read('src/App.tsx')
+  assert.equal((app.match(/<GradualBlur/g) ?? []).length, 1)
+  assert.match(app, /position="bottom"/)
+  assert.match(app, /divCount=\{6\}/)
+  assert.match(app, /strength=\{1\.8\}/)
+})
+
+test('GradualBlur is decorative and has a browser fallback', async () => {
+  const component = await read('src/components/GradualBlur.tsx')
+  const css = await read('src/components/GradualBlur.css')
+  assert.match(component, /aria-hidden="true"/)
+  assert.match(css, /\.gradual-blur\s*\{[^}]*pointer-events:\s*none/)
+  assert.match(css, /@supports not \(\(backdrop-filter:/)
+})
+
+test('GradualBlur reduces layers and height on narrow screens', async () => {
+  const css = await read('src/components/GradualBlur.css')
+  assert.match(css, /@media \(max-width: 760px\)/)
+  assert.match(css, /--gradual-blur-height:\s*4\.5rem/)
+  assert.match(css, /\.gradual-blur-layer:nth-child\(n\+5\)/)
+})
+
+test('GradualBlur adds no unused math dependency', async () => {
+  const pkg = await read('package.json')
+  assert.doesNotMatch(pkg, /mathjs/)
+})
+
+test('the exhibition header composes a Dock and a left tool directory', async () => {
+  const header = await read('src/components/ExhibitionHeader.tsx')
+  assert.match(header, /<Dock/)
+  assert.match(header, /<ToolDirectory/)
+  assert.match(header, /header-left-cluster/)
+})
+
+test('Dock uses Motion springs and respects reduced motion', async () => {
+  const dock = await read('src/components/Dock.tsx')
+  const pkg = await read('package.json')
+  assert.match(dock, /motion\/react/)
+  assert.match(dock, /useSpring/)
+  assert.match(dock, /useReducedMotion/)
+  assert.match(pkg, /"motion"/)
+})
+
+test('tool directory is data driven and opens from the left', async () => {
+  const directory = await read('src/components/ToolDirectory.tsx')
+  const menu = await read('src/components/StaggeredMenu.tsx')
+  const catalog = await read('src/data/toolCatalog.ts')
+  assert.match(directory, /groups=\{toolCatalog\}/)
+  assert.match(directory, /activeGroup\.tools\.map/)
+  assert.match(directory, /<LineSidebar/)
+  assert.match(directory, /<StaggeredMenu/)
+  assert.match(menu, /data-side="left"/)
+  assert.match(catalog, /CK Rig Box/)
+  assert.match(catalog, /CK Tool/)
+  assert.match(catalog, /Scripts Box/)
+})
+
+test('tool directory exposes both studio and guide destinations', async () => {
+  const directory = await read('src/components/ToolDirectory.tsx')
+  const guides = await read('src/components/ToolUsageGuides.tsx')
+  assert.match(directory, /tool-guide-select/)
+  assert.match(directory, /交互台/)
+  assert.match(directory, /使用说明/)
+  assert.match(guides, /tool-guide-select/)
+})

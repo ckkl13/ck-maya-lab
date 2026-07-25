@@ -1,0 +1,22 @@
+.line-sidebar { position: relative; display: grid; align-content: start; gap: 5px; padding: 8px 18px 8px 0; border-right: 1px solid #31383d; }
+.line-sidebar::before { content: ''; position: absolute; top: 8px; right: -1px; width: 1px; height: 46px; background: var(--cyan); box-shadow: 0 0 18px rgba(70, 215, 197, .5); transition: transform .34s cubic-bezier(.2,.8,.2,1); }
+.line-sidebar:has(.line-sidebar-item:nth-child(2).is-active)::before { transform: translateY(51px); }
+.line-sidebar-item { --line-shift: 0px; --line-glow: 0; min-height: 46px; display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 5px; padding: 0 8px; border: 0; color: #6f7a81; background: transparent; text-align: left; cursor: pointer; transform: translateX(var(--line-shift)); transition: color .2s ease, background .2s ease, transform .12s linear; }
+.line-sidebar-item:hover { color: #b9c4ca; background: rgba(255,255,255,.025); }
+.line-sidebar-item.is-active { color: #e2eaee; background: linear-gradient(90deg, rgba(70,215,197,.09), transparent); }
+.line-sidebar-item:focus-visible { outline: 1px solid var(--cyan); outline-offset: -1px; }
+.line-sidebar-index { color: #657178; opacity: calc(.65 + var(--line-glow) * .35); font: 9px/1 ui-monospace, Consolas, monospace; }
+.line-sidebar-item.is-active .line-sidebar-index { color: var(--cyan); opacity: 1; }
+.line-sidebar-item > span:last-child { display: grid; gap: 5px; }
+.line-sidebar-item strong { font-size: 11px; font-weight: 600; }
+.line-sidebar-item small { color: #515b61; font: 8px/1 ui-monospace, Consolas, monospace; letter-spacing: .08em; }
+
+@media (max-width: 760px) {
+  .line-sidebar { grid-auto-flow: column; grid-auto-columns: minmax(145px, 1fr); overflow-x: auto; overflow-y: hidden; padding: 0 0 12px; border: 0; border-bottom: 1px solid #31383d; scrollbar-width: none; }
+  .line-sidebar::-webkit-scrollbar { display: none; }
+  .line-sidebar::before { top: auto; right: auto; bottom: -1px; left: 0; width: 50%; height: 1px; transition: transform .3s ease; }
+  .line-sidebar:has(.line-sidebar-item:nth-child(2).is-active)::before { transform: translateX(100%); }
+  .line-sidebar-item { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) { .line-sidebar-item { transform: none; transition-duration: 0s; } }

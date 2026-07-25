@@ -1,0 +1,44 @@
+.dock-panel {
+  min-height: 48px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 5px 8px;
+  border: 1px solid rgba(167, 186, 197, .16);
+  border-radius: 13px;
+  background: linear-gradient(180deg, rgba(36, 42, 46, .82), rgba(15, 18, 20, .9));
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .28), inset 0 1px rgba(255, 255, 255, .06);
+}
+
+.dock-item {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(176, 193, 203, .16);
+  border-radius: 9px;
+  color: #aeb9c0;
+  background: rgba(35, 41, 45, .88);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .04);
+  text-decoration: none;
+  transform-origin: 50% 100%;
+}
+
+.dock-item::after { content: ''; position: absolute; inset: auto 28% 3px; height: 2px; border-radius: 2px; background: var(--cyan); opacity: 0; transform: scaleX(.5); transition: opacity .2s ease, transform .2s ease; }
+.dock-item:hover, .dock-item:focus-visible { color: #e9f2f5; border-color: rgba(70, 215, 197, .55); outline: none; }
+.dock-item:hover::after, .dock-item:focus-visible::after { opacity: 1; transform: scaleX(1); }
+.dock-icon { width: 17px; height: 17px; display: grid; place-items: center; }
+.dock-icon svg { width: 100%; height: 100%; }
+.dock-label { position: absolute; left: 50%; bottom: calc(100% + 10px); padding: 6px 8px; border: 1px solid #3d474d; border-radius: 4px; color: #dfe8ec; background: #111518; font: 9px/1 ui-monospace, Consolas, monospace; white-space: nowrap; opacity: 0; pointer-events: none; transform: translate(-50%, 5px); transition: opacity .18s ease, transform .18s ease; }
+.dock-item:hover .dock-label, .dock-item:focus-visible .dock-label { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 760px) {
+  .dock-panel { min-height: 42px; gap: 3px; padding: 4px; }
+  .dock-item { width: 32px !important; height: 32px !important; border-radius: 7px; }
+  .dock-icon { width: 15px; height: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .dock-item { width: 38px !important; height: 38px !important; }
+  .dock-label, .dock-item::after { transition: none; }
+}

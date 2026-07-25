@@ -40,7 +40,6 @@ export function GlobalInteractiveBackground() {
           />
         ))}
       </div>
-      <div className="global-scan-line" />
     </div>
   )
 }

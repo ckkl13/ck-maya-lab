@@ -1,0 +1,32 @@
+.gradual-blur {
+  --gradual-blur-height: 7rem;
+  --gradual-blur-opacity: .86;
+  position: fixed;
+  z-index: 80;
+  left: 0;
+  right: 0;
+  height: var(--gradual-blur-height);
+  overflow: hidden;
+  opacity: var(--gradual-blur-opacity);
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.gradual-blur-bottom { bottom: 0; }
+.gradual-blur-top { top: 0; }
+.gradual-blur-inner, .gradual-blur-layer { position: absolute; inset: 0; pointer-events: none; }
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .gradual-blur-inner {
+    background: linear-gradient(to bottom, transparent, rgba(8,10,12,.72));
+  }
+  .gradual-blur-layer { display: none; }
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  .gradual-blur {
+    --gradual-blur-height: 4.5rem !important;
+    --gradual-blur-opacity: .68;
+  }
+  .gradual-blur-layer:nth-child(n+5) { display: none; }
+}

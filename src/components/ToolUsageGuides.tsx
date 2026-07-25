@@ -1,4 +1,4 @@
-import { useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { ArrowRight, BookOpen, CheckCircle2, Download, FileCode2 } from 'lucide-react'
 import { ScrollTrigger, gsap, useGSAP } from '../animation/gsap'
 import { toolGuides } from '../data/toolGuides'
@@ -10,6 +10,16 @@ export function ToolUsageGuides() {
   const [activeChapter, setActiveChapter] = useState(0)
   const guide = toolGuides[activeTool]
   const chapter = guide.chapters[activeChapter]
+
+  useEffect(() => {
+    const selectFromDirectory = (event: Event) => {
+      const { toolId } = (event as CustomEvent<{ toolId: string }>).detail
+      const index = toolGuides.findIndex((item) => item.id === toolId)
+      if (index >= 0) selectTool(index)
+    }
+    window.addEventListener('tool-guide-select', selectFromDirectory)
+    return () => window.removeEventListener('tool-guide-select', selectFromDirectory)
+  }, [])
 
   useGSAP(() => {
     const mm = gsap.matchMedia()

@@ -1,0 +1,13 @@
+.staggered-menu { position: fixed; z-index: 180; inset: 0; visibility: hidden; opacity: 0; pointer-events: none; }
+.staggered-menu-backdrop { position: absolute; z-index: 0; inset: 0; border: 0; background: rgba(3, 5, 6, .72); opacity: 0; backdrop-filter: blur(7px); cursor: default; }
+.staggered-menu-layer, .staggered-menu-panel { position: absolute; inset: 0 auto 0 0; width: clamp(320px, 42vw, 620px); will-change: transform; }
+.staggered-menu-layer.is-far { z-index: 1; width: calc(clamp(320px, 42vw, 620px) + 32px); background: #294248; }
+.staggered-menu-layer.is-near { z-index: 2; width: calc(clamp(320px, 42vw, 620px) + 15px); background: #182b2f; }
+.staggered-menu-panel { z-index: 3; overflow: auto; color: #dfe7eb; background: linear-gradient(145deg, #151a1d, #0b0e10 74%); box-shadow: 28px 0 80px rgba(0,0,0,.46); }
+
+@media (max-width: 760px) {
+  .staggered-menu-layer, .staggered-menu-panel { width: 100%; }
+  .staggered-menu-layer.is-far, .staggered-menu-layer.is-near { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) { .staggered-menu-layer, .staggered-menu-panel { will-change: auto; } }

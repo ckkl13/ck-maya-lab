@@ -1,0 +1,46 @@
+.header-left-cluster { justify-self: start; display: flex; align-items: center; gap: 9px; }
+.tool-directory-trigger { position: relative; z-index: 190; height: 34px; display: inline-flex; align-items: center; gap: 7px; padding: 0 10px; border: 1px solid rgba(170,187,197,.2); border-radius: 3px; color: #9aa6ad; background: rgba(27,32,35,.82); font: 9px/1 ui-monospace, Consolas, monospace; letter-spacing: .08em; cursor: pointer; }
+.tool-directory-trigger svg { width: 14px; height: 14px; color: var(--cyan); }
+.tool-directory-trigger:hover, .tool-directory-trigger:focus-visible, .tool-directory-trigger.is-open { color: #e4ecef; border-color: rgba(70,215,197,.55); outline: none; }
+.tool-directory-shell { min-height: 100%; display: grid; grid-template-rows: auto 1fr auto; padding: 92px clamp(22px, 3vw, 42px) 30px; }
+.tool-directory-heading > span { display: inline-flex; align-items: center; gap: 8px; color: var(--cyan); font: 9px/1 ui-monospace, Consolas, monospace; letter-spacing: .14em; }
+.tool-directory-heading > span svg { width: 14px; }
+.tool-directory-heading h2 { margin: 17px 0 12px; font-size: clamp(36px, 4.2vw, 60px); line-height: .9; letter-spacing: -.055em; }
+.tool-directory-heading p { max-width: 38ch; margin: 0; color: #758087; font-size: 11px; line-height: 1.7; }
+.tool-directory-layout { min-height: 0; display: grid; grid-template-columns: minmax(145px, .36fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 38px); margin-top: 48px; }
+.tool-directory-content { min-width: 0; }
+.tool-directory-category { margin-bottom: 20px; }
+.tool-directory-category span { color: #dae3e7; font-size: 13px; }
+.tool-directory-category p { margin: 6px 0 0; color: #657077; font-size: 9px; line-height: 1.5; }
+.tool-directory-card { position: relative; display: grid; grid-template-columns: 30px 1fr; gap: 8px 12px; padding: 17px 0; border-top: 1px solid #30373b; }
+.tool-directory-card:last-child { border-bottom: 1px solid #30373b; }
+.tool-directory-card::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 2px; background: var(--catalog-accent); transform: scaleY(0); transition: transform .25s ease; }
+.tool-directory-card:hover::before, .tool-directory-card:focus-within::before { transform: scaleY(1); }
+.tool-directory-number { padding-top: 4px; color: var(--catalog-accent); font: 9px/1 ui-monospace, Consolas, monospace; }
+.tool-directory-card small { color: #5e6970; font: 8px/1 ui-monospace, Consolas, monospace; letter-spacing: .1em; }
+.tool-directory-card h3 { margin: 7px 0 0; font-size: 18px; letter-spacing: -.02em; }
+.tool-directory-actions { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tool-directory-actions button { min-height: 34px; display: inline-flex; align-items: center; gap: 7px; padding: 0 9px; border: 1px solid #343d42; color: #8e9aa1; background: #151a1d; font-size: 9px; cursor: pointer; }
+.tool-directory-actions button svg { width: 12px; height: 12px; }.tool-directory-actions button svg:last-child { margin-left: 3px; color: var(--catalog-accent); }
+.tool-directory-actions button:hover, .tool-directory-actions button:focus-visible { color: #e2eaed; border-color: var(--catalog-accent); outline: none; }
+.tool-directory-footer { align-self: end; display: flex; justify-content: space-between; gap: 20px; padding-top: 24px; color: #556067; font: 8px/1 ui-monospace, Consolas, monospace; letter-spacing: .08em; }
+
+@media (max-width: 1080px) { .tool-directory-trigger span { display: none; } }
+@media (max-width: 760px) {
+  .header-left-cluster { gap: 5px; }
+  .tool-directory-trigger { width: 34px; padding: 0; justify-content: center; }
+  .tool-directory-shell { min-height: 100svh; padding: 78px 18px 22px; }
+  .tool-directory-heading h2 { font-size: 42px; }
+  .tool-directory-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 22px; margin-top: 34px; }
+  .tool-directory-card { padding-block: 15px; }
+}
+
+@media (max-width: 430px) {
+  .exhibition-brand strong { display: none; }
+  .tool-directory-heading p { max-width: 32ch; }
+  .tool-directory-actions button { min-height: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-directory-card::before, .tool-directory-trigger { transition: none; }
+}
