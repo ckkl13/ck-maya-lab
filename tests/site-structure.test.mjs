@@ -257,6 +257,7 @@ test('tool showcase cards reuse TiltedCard for image interaction', async () => {
   assert.match(exhibition, /overlay=/)
   assert.match(card, /onClick/)
   assert.match(card, /overlay/)
+  assert.doesNotMatch(exhibition, /work\.querySelector\('\.work-visual'\), \{ autoAlpha/)
 })
 
 test('hero artwork does not include an extra direction arrow', async () => {

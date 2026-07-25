@@ -64,7 +64,7 @@ export function ToolExhibition() {
         })
         timeline
           .from(work.querySelector('.work-number'), { autoAlpha: 0, x: -24, duration: 0.45 })
-          .from(work.querySelector('.work-visual'), { autoAlpha: 0, y: 34, scale: 0.97, duration: 0.75, ease: 'power3.out' }, '<0.04')
+          .from(work.querySelector('.work-visual'), { y: 34, scale: 0.97, duration: 0.75, ease: 'power3.out' }, '<0.04')
           .from(work.querySelectorAll('.work-copy > *'), { autoAlpha: 0, y: 18, stagger: 0.07, duration: 0.46 }, '<0.16')
       })
     })
