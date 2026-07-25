@@ -1,8 +1,9 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { ArrowDown, MoveDownRight } from 'lucide-react'
 import { gsap, useGSAP } from '../animation/gsap'
 import { tools } from '../data/tools'
 import { usePointerField } from '../hooks/usePointerField'
+import { TiltedCard } from './TiltedCard'
 
 const frames = [
   { className: 'hero-frame-rig', src: './media/exhibition/rig-box.png', alt: 'CK Rig Box Maya 界面' },
@@ -12,6 +13,7 @@ const frames = [
 
 export function HeroExhibition() {
   const scope = useRef<HTMLElement>(null)
+  const [activeFrame, setActiveFrame] = useState<string | null>(null)
   usePointerField(scope)
 
   useGSAP(() => {
@@ -58,9 +60,13 @@ export function HeroExhibition() {
         <div className="hero-artwork-inner">
           <div className="hero-orbit hero-depth-far" aria-hidden="true" />
           {frames.map((frame) => (
-            <figure key={frame.className} className={`hero-frame ${frame.className}`}>
-              <img src={frame.src} alt={frame.alt} />
-            </figure>
+            <TiltedCard
+              key={frame.className}
+              className={`hero-frame ${frame.className} ${activeFrame === frame.className ? 'is-active' : ''}`}
+              imageSrc={frame.src}
+              altText={frame.alt}
+              onActiveChange={(active) => setActiveFrame((current) => active ? frame.className : current === frame.className ? null : current)}
+            />
           ))}
           <span className="hero-index">01—03</span>
           <MoveDownRight className="hero-direction" aria-hidden="true" />
