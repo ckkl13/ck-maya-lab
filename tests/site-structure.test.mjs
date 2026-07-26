@@ -299,6 +299,9 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
   assert.match(css, /\.hero-frame img\s*\{[^}]*object-fit:\s*cover/)
   assert.match(css, /\.hero-frame-rig\s*\{[^}]*aspect-ratio:\s*390\s*\/\s*498/)
   assert.match(css, /\.hero-frame-ck\s*\{[^}]*aspect-ratio:\s*488\s*\/\s*1012/)
+  assert.match(css, /\.hero-artwork-inner\s*\{[^}]*width:\s*min\(100%, 820px\)/)
+  assert.match(css, /@media \(max-width: 820px\)[\s\S]*?\.hero-frame-rig \{ width: auto; height: 68%;/)
+  assert.match(css, /@media \(max-width: 520px\)[\s\S]*?\.hero-frame-rig \{ height: 64%;/)
   assert.doesNotMatch(css, /\.hero-frame\s*\{[^}]*border:/)
 })
 
