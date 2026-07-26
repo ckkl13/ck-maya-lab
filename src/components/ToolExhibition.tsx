@@ -50,15 +50,6 @@ export function ToolExhibition() {
         scrollTrigger: { trigger: scope.current, start: 'top bottom', end: 'bottom top', scrub: 1.1 },
       })
       works.forEach((work) => {
-        const imageLayer = work.querySelector('.work-tilt-card')
-        if (imageLayer) {
-          gsap.to(imageLayer, {
-            yPercent: -7,
-            scale: 1.045,
-            ease: 'none',
-            scrollTrigger: { trigger: work, start: 'top bottom', end: 'bottom top', scrub: 0.9 },
-          })
-        }
         const timeline = gsap.timeline({
           scrollTrigger: { trigger: work, start: 'top 76%', toggleActions: 'play none none reverse' },
         })

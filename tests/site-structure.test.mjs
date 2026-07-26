@@ -261,9 +261,12 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
 
 test('tool showcase cards keep the stable link-based image interaction', async () => {
   const exhibition = await read('src/components/ToolExhibition.tsx')
+  const css = await read('src/App.css')
   assert.match(exhibition, /<a className="work-visual"/)
   assert.match(exhibition, /<TiltedCard/)
   assert.doesNotMatch(exhibition, /work\.querySelector\('\.work-visual'\), \{ autoAlpha/)
+  assert.doesNotMatch(exhibition, /yPercent: -7/)
+  assert.match(css, /\.work-tilt-card \.work-tilt-image[^}]*object-fit: contain/)
 })
 
 test('hero artwork does not include an extra direction arrow', async () => {
