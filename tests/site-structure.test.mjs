@@ -32,6 +32,17 @@ test('pointer interaction avoids React state updates', async () => {
   assert.match(hook, /prefers-reduced-motion/)
 })
 
+test('page interaction includes a restrained click pulse and proximity text treatment', async () => {
+  const app = await read('src/App.tsx')
+  const pulse = await read('src/components/PageClickPulse.tsx')
+  const proximity = await read('src/components/VariableProximity.tsx')
+  const scrollFloat = await read('src/components/ScrollFloatText.tsx')
+  assert.match(app, /<PageClickPulse/)
+  assert.match(pulse, /pointerdown/)
+  assert.match(proximity, /fontVariationSettings/)
+  assert.match(scrollFloat, /scrollTrigger/)
+})
+
 test('tool exhibition layers an editorial depth field behind its work journey', async () => {
   const exhibition = await read('src/components/ToolExhibition.tsx')
   const css = await read('src/App.css')

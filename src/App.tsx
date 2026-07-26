@@ -1,5 +1,6 @@
 import './App.css'
 import { DownloadsSection } from './components/DownloadsSection'
+import { PageClickPulse } from './components/PageClickPulse'
 import { ExhibitionHeader } from './components/ExhibitionHeader'
 import { GradualBlur } from './components/GradualBlur'
 import { GlobalInteractiveBackground } from './components/GlobalInteractiveBackground'
@@ -13,6 +14,7 @@ export default function App() {
   return (
     <>
       <GlobalInteractiveBackground />
+      <PageClickPulse />
       <ExhibitionHeader />
       <main className="app-main">
         <SceneTransitions />

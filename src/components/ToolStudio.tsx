@@ -4,6 +4,8 @@ import { ScrollTrigger, gsap, useGSAP } from '../animation/gsap'
 import { tools } from '../data/tools'
 import type { ToolId } from '../types/tools'
 import { SpotlightPanel } from './SpotlightPanel'
+import { ScrollFloatText } from './ScrollFloatText'
+import { VariableProximity } from './VariableProximity'
 
 const RigBoxDemo = lazy(() => import('../demos/RigBoxDemo'))
 const CkToolDemo = lazy(() => import('../demos/CkToolDemo'))
@@ -61,7 +63,7 @@ export function ToolStudio() {
   return <section ref={scope} className="tool-studio" id="studio" data-scene="studio" data-scene-index="03">
     <header className="studio-intro">
       <span>ROOM 03 / INTERACTIVE INSTALLATION</span>
-      <h2>进入真实的 Maya 工具界面</h2>
+      <h2><ScrollFloatText><VariableProximity label="进入真实的 Maya 工具界面" containerRef={scope} radius={145} /></ScrollFloatText></h2>
       <p>所有控件名称和组合关系来自当前源码。切换工具、调整界面并理解工作流；只有 CK Rig Box 会在网页中模拟层级与约束结果。</p>
     </header>
     <aside className="studio-sidebar">
@@ -70,7 +72,7 @@ export function ToolStudio() {
         const Icon = toolIcons[tool.id]
         return <button type="button" key={tool.id} className={tool.id === activeId ? 'is-active' : ''} aria-pressed={tool.id === activeId} onClick={() => selectTool(tool.id)} onPointerUp={(event) => event.currentTarget.blur()} style={{ '--item-accent': tool.accent } as React.CSSProperties}><span className="tool-index">0{index + 1}</span><Icon /><span><b>{tool.shortName}</b><small>{tool.category}</small></span></button>
       })}</nav>
-      <SpotlightPanel className="active-tool-brief" color={`${activeTool.accent}20`}><span>{activeTool.version}</span><h1>{activeTool.name}</h1><p>{activeTool.summary}</p><div className="compat-line"><span>{activeTool.mayaVersions}</span><span>{activeTool.platforms}</span></div><a href="#downloads" className="sidebar-download"><Download />获取工具</a></SpotlightPanel>
+      <SpotlightPanel className="active-tool-brief" color={`${activeTool.accent}20`}><span>{activeTool.version}</span><h1><VariableProximity label={activeTool.name} containerRef={scope} radius={100} /></h1><p>{activeTool.summary}</p><div className="compat-line"><span>{activeTool.mayaVersions}</span><span>{activeTool.platforms}</span></div><a href="#downloads" className="sidebar-download"><Download />获取工具</a></SpotlightPanel>
     </aside>
     <div className="studio-stage" style={{ '--active-accent': activeTool.accent } as React.CSSProperties}>
       <div className="stage-bar"><span><i /> WEB INTERACTIVE DEMO</span><div><button type="button" onClick={() => document.getElementById('guide')?.scrollIntoView({ behavior: 'smooth' })}>使用说明 <ExternalLink /></button></div></div>

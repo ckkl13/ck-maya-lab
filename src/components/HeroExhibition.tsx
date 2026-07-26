@@ -3,6 +3,7 @@ import { ArrowDown } from 'lucide-react'
 import { gsap, useGSAP } from '../animation/gsap'
 import { tools } from '../data/tools'
 import { TiltedCard } from './TiltedCard'
+import { VariableProximity } from './VariableProximity'
 
 const frames = [
   { className: 'hero-frame-rig', src: './media/exhibition/rig-box.png', alt: 'CK Rig Box Maya 界面' },
@@ -44,8 +45,8 @@ export function HeroExhibition() {
       <div className="hero-copy">
         <p className="hero-kicker"><span>数字艺术工具展览</span><span>2026 / MAYA</span></p>
         <h1>
-          <span className="hero-title-mask"><span className="hero-title-line">TOOLS FOR</span></span>
-          <span className="hero-title-mask is-offset"><span className="hero-title-line">DIGITAL RIGGING</span></span>
+          <span className="hero-title-mask"><span className="hero-title-line"><VariableProximity label="TOOLS FOR" containerRef={scope} radius={150} /></span></span>
+          <span className="hero-title-mask is-offset"><span className="hero-title-line"><VariableProximity label="DIGITAL RIGGING" containerRef={scope} radius={150} /></span></span>
         </h1>
         <div className="hero-summary">
           <p>把 Maya 绑定与脚本工具当作数字作品展示。进入真实界面，理解每一个控件，再下载到自己的工作流。</p>

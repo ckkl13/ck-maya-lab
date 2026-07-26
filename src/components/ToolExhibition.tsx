@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import { ArrowDownToLine, ArrowUpRight } from 'lucide-react'
 import { gsap, useGSAP } from '../animation/gsap'
 import { TiltedCard } from './TiltedCard'
+import { ScrollFloatText } from './ScrollFloatText'
+import { VariableProximity } from './VariableProximity'
 import { tools } from '../data/tools'
 import type { ToolId } from '../types/tools'
 
@@ -71,7 +73,7 @@ export function ToolExhibition() {
       </div>
       <header className="exhibition-intro">
         <span>SELECTED WORKS / 2026</span>
-        <h2>三件工具，三种 Maya 工作方式</h2>
+        <h2><ScrollFloatText><VariableProximity label="三件工具，三种 Maya 工作方式" containerRef={scope} radius={145} /></ScrollFloatText></h2>
         <p>这里先看作品，再进入可交互的真实界面。CK Tool、Scripts Box 的网页展示只还原真实 UI 状态，不执行 Maya、Python 或 MEL。</p>
       </header>
       <div className="exhibition-works">
@@ -92,7 +94,7 @@ export function ToolExhibition() {
             </a>
             <div className="work-copy">
               <p>{tool.category} · v{tool.version}</p>
-              <h3>{tool.name}</h3>
+              <h3><VariableProximity label={tool.name} containerRef={scope} radius={110} /></h3>
               <strong>{tool.summary}</strong>
               <ul>{tool.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
               <div className="work-meta"><span>{tool.mayaVersions}</span><span>{tool.platforms}</span></div>

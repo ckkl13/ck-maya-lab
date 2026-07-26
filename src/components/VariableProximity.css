@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+.variable-proximity { font-family: 'Roboto Flex', Inter, system-ui, sans-serif; }
+.variable-proximity-letter { display: inline-block; font-variation-settings: 'wght' 420, 'opsz' 14; transform-origin: 50% 70%; transition: color .18s ease; will-change: transform, font-variation-settings; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce) { .variable-proximity-letter { will-change: auto; } }

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { ArrowRight, BookOpen, CheckCircle2, Download, FileCode2 } from 'lucide-react'
 import { ScrollTrigger, gsap, useGSAP } from '../animation/gsap'
 import { toolGuides } from '../data/toolGuides'
+import { ScrollFloatText } from './ScrollFloatText'
+import { VariableProximity } from './VariableProximity'
 
 export function ToolUsageGuides() {
   const scope = useRef<HTMLElement>(null)
@@ -78,7 +80,7 @@ export function ToolUsageGuides() {
       <header className="guide-heading">
         <div>
           <span>使用手册 / SOURCE-GUIDED</span>
-          <h2>每个控件，都有清楚的使用路径</h2>
+          <h2><ScrollFloatText><VariableProximity label="每个控件，都有清楚的使用路径" containerRef={scope} radius={145} /></ScrollFloatText></h2>
         </div>
         <p>说明内容来自三个工具当前源码。选择工具和章节，逐步查看输入、操作、结果与风险；完整版本可下载为 Markdown。</p>
         <a href="./docs/TOOLS_USAGE.md" download><Download />下载完整手册</a>

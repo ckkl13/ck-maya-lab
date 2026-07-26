@@ -1,13 +1,17 @@
+import { useRef } from 'react'
 import { ArrowUpRight, Download, GitBranch } from 'lucide-react'
 import { tools } from '../data/tools'
+import { ScrollFloatText } from './ScrollFloatText'
+import { VariableProximity } from './VariableProximity'
 
 export function DownloadsSection() {
+  const scope = useRef<HTMLElement>(null)
   return (
-    <section className="downloads-section" id="downloads" data-scene="downloads" data-scene-index="05">
+    <section ref={scope} className="downloads-section" id="downloads" data-scene="downloads" data-scene-index="05">
       <div className="download-field" aria-hidden="true" />
       <header className="downloads-header">
         <span>FINAL ROOM / DOWNLOAD ARCHIVE</span>
-        <h2>带走你的下一件 Maya 工具</h2>
+        <h2><ScrollFloatText><VariableProximity label="带走你的下一件 Maya 工具" containerRef={scope} radius={145} /></ScrollFloatText></h2>
         <p>所有下载均为静态 ZIP 包。网页不会连接 Maya，也不会执行任何 Python 或 MEL。</p>
       </header>
       <div className="download-list">

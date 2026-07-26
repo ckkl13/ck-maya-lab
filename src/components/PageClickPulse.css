@@ -1,0 +1,4 @@
+.page-click-pulses { position: fixed; z-index: 160; inset: 0; pointer-events: none; }
+.page-click-pulse-ring { width: 18px; height: 18px; position: fixed; left: var(--pulse-x); top: var(--pulse-y); border: 1px solid rgba(115,238,221,.82); border-radius: 50%; box-shadow: 0 0 0 5px rgba(70,215,197,.09), 0 0 22px rgba(70,215,197,.36); opacity: 0; pointer-events: none; transform: translate(-50%,-50%) scale(.25); animation: page-click-pulse .72s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes page-click-pulse { 12% { opacity: .92; } 100% { opacity: 0; transform: translate(-50%,-50%) scale(5.2); } }
+@media (pointer: coarse), (prefers-reduced-motion: reduce) { .page-click-pulses { display: none; } }
