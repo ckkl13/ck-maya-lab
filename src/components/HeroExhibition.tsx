@@ -64,6 +64,7 @@ export function HeroExhibition() {
               className={`hero-frame ${frame.className} ${activeFrame === frame.className ? 'is-active' : ''}`}
               imageSrc={frame.src}
               altText={frame.alt}
+              imageLoading="eager"
               onActiveChange={(active) => setActiveFrame((current) => active ? frame.className : current === frame.className ? null : current)}
             />
           ))}

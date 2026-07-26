@@ -28,7 +28,7 @@ export default function App() {
           target="page"
           height="18rem"
           strength={6}
-          divCount={16}
+          divCount={8}
           curve="bezier"
           opacity={1}
         />

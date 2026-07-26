@@ -154,7 +154,7 @@ test('app mounts one fixed viewport-bottom GradualBlur', async () => {
   assert.match(app, /position="bottom"/)
   assert.match(app, /target="page"/)
   assert.match(app, /height="18rem"/)
-  assert.match(app, /divCount=\{16\}/)
+  assert.match(app, /divCount=\{8\}/)
   assert.match(app, /strength=\{6\}/)
   assert.match(app, /opacity=\{1\}/)
   assert.doesNotMatch(app, /exponential/)
@@ -237,11 +237,20 @@ test('tool directory exposes both studio and guide destinations', async () => {
   assert.match(guides, /tool-guide-select/)
 })
 
-test('GradualBlur overlaps many soft layers to avoid visible steps', async () => {
+test('GradualBlur overlaps soft layers without excessive compositor memory', async () => {
   const component = await read('src/components/GradualBlur.tsx')
-  assert.match(component, /Math\.min\(18/)
-  assert.match(component, /centre - 18/)
-  assert.match(component, /centre \+ 18/)
+  assert.match(component, /Math\.min\(8/)
+  assert.match(component, /centre - 24/)
+  assert.match(component, /centre \+ 24/)
+})
+
+test('large page sections do not keep permanent compositor layers', async () => {
+  const css = await read('src/App.css')
+  const proximity = await read('src/components/VariableProximity.css')
+  const card = await read('src/components/TiltedCard.css')
+  assert.doesNotMatch(css, /\[data-scene\][^}]*will-change/)
+  assert.doesNotMatch(proximity, /will-change/)
+  assert.doesNotMatch(card, /will-change/)
 })
 
 test('tool directory matches the Dock interaction and links to tool showcases', async () => {
@@ -283,6 +292,9 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
   assert.match(card, /useMotionValue/)
   assert.match(card, /useSpring/)
   assert.match(card, /onPointerMove/)
+  assert.match(card, /loading=\{imageLoading\}/)
+  assert.match(card, /decoding="async"/)
+  assert.match(hero, /imageLoading="eager"/)
   assert.match(css, /\.hero-frame\.is-active\s*\{[^}]*z-index:\s*10/)
   assert.match(css, /\.hero-frame img\s*\{[^}]*object-fit:\s*cover/)
   assert.match(css, /\.hero-frame-rig\s*\{[^}]*aspect-ratio:\s*390\s*\/\s*498/)

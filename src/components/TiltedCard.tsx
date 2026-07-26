@@ -12,6 +12,7 @@ interface TiltedCardProps {
   overlay?: ReactNode
   imageClassName?: string
   focusable?: boolean
+  imageLoading?: 'eager' | 'lazy'
 }
 
 const spring = { damping: 24, stiffness: 180, mass: 0.55 }
@@ -26,6 +27,7 @@ export function TiltedCard({
   overlay,
   imageClassName = '',
   focusable = true,
+  imageLoading = 'lazy',
 }: TiltedCardProps) {
   const ref = useRef<HTMLElement>(null)
   const active = useRef(false)
@@ -74,7 +76,7 @@ export function TiltedCard({
       tabIndex={focusable ? 0 : -1}
     >
       <motion.div className="tilted-card-inner" style={{ rotateX, rotateY, scale }}>
-        <img src={imageSrc} alt={altText} className={`tilted-card-image ${imageClassName}`.trim()} />
+        <img src={imageSrc} alt={altText} className={`tilted-card-image ${imageClassName}`.trim()} loading={imageLoading} decoding="async" />
         {overlay}
       </motion.div>
     </motion.figure>

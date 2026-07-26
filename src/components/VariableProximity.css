@@ -1,3 +1,2 @@
 .variable-proximity { font-family: inherit; }
-.variable-proximity-letter { display: inline-block; transform-origin: 50% 70%; transition: color .18s ease; will-change: transform; }
-@media (pointer: coarse), (prefers-reduced-motion: reduce) { .variable-proximity-letter { will-change: auto; } }
+.variable-proximity-letter { display: inline-block; transform-origin: 50% 70%; transition: color .18s ease; }
