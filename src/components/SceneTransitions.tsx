@@ -77,14 +77,16 @@ export function SceneTransitions() {
           scenes.forEach((scene, index) => {
             if (index === 0) {
               gsap.to(scene, {
-                y: -42,
-                autoAlpha: 0.12,
-                scale: 0.975,
+                y: -82,
+                rotation: -1.2,
+                autoAlpha: 0,
+                scale: 0.94,
+                transformOrigin: '50% 50%',
                 ease: 'none',
                 scrollTrigger: {
                   trigger: scene,
                   start: '35% top',
-                  end: 'bottom top',
+                  end: 'bottom 18%',
                   scrub: 0.6,
                 },
               })
@@ -93,16 +95,16 @@ export function SceneTransitions() {
                 scrollTrigger: {
                   trigger: scene,
                   start: 'top 94%',
-                  end: 'bottom top',
+                  end: 'bottom 28%',
                   scrub: 0.65,
                 },
               })
               timeline
                 .fromTo(scene,
-                  { y: 64, autoAlpha: 0.08, scale: 0.98 },
-                  { y: 0, autoAlpha: 1, scale: 1, duration: 0.34, ease: 'none' },
+                  { y: 96, rotation: 1.1, autoAlpha: 0, scale: 0.94, transformOrigin: '50% 50%' },
+                  { y: 0, rotation: 0, autoAlpha: 1, scale: 1, duration: 0.34, ease: 'none' },
                 )
-                .to(scene, { y: -44, autoAlpha: 0.08, scale: 0.975, duration: 0.28, ease: 'none' }, 0.72)
+                .to(scene, { y: -96, rotation: -1.1, autoAlpha: 0, scale: 0.94, duration: 0.4, ease: 'none' }, 0.58)
             }
           })
         }
