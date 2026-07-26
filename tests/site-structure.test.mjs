@@ -147,6 +147,7 @@ test('app mounts one fixed viewport-bottom GradualBlur', async () => {
 
 test('scene transitions reverse into a visible upward exit', async () => {
   const transitions = await read('src/components/SceneTransitions.tsx')
+  assert.match(transitions, /conditions\?\.motion && conditions\.desktop/)
   assert.match(transitions, /y: 96, rotation: 1\.1, autoAlpha: 0/)
   assert.match(transitions, /y: -96, rotation: -1\.1, autoAlpha: 0/)
   assert.match(transitions, /end: 'bottom 28%'/)

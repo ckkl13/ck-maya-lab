@@ -73,7 +73,7 @@ export function SceneTransitions() {
         motion: '(prefers-reduced-motion: no-preference)',
       },
       ({ conditions }) => {
-        if (conditions?.motion) {
+        if (conditions?.motion && conditions.desktop) {
           scenes.forEach((scene, index) => {
             if (index === 0) {
               gsap.to(scene, {
