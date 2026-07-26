@@ -23,7 +23,6 @@
 @keyframes aurora-one { from { transform: translate3d(-8%, -5%, 0) rotate(-8deg) scale(.95); opacity: .45; } to { transform: translate3d(23%, 18%, 0) rotate(12deg) scale(1.18); opacity: .9; } }
 @keyframes aurora-two { from { transform: translate3d(10%, -12%, 0) rotate(8deg) scale(1.08); opacity: .35; } to { transform: translate3d(-20%, 15%, 0) rotate(-14deg) scale(.9); opacity: .8; } }
 @keyframes aurora-three { from { transform: translate3d(-8%, 9%, 0) rotate(7deg) scale(.88); opacity: .25; } to { transform: translate3d(18%, -12%, 0) rotate(-9deg) scale(1.14); opacity: .75; } }
-.cursor-effects { position: fixed; z-index: 120; inset: 0; display: block; pointer-events: none; }
 .global-light-field {
   position: absolute;
   inset: -12%;
@@ -686,7 +685,6 @@ footer > span { color: #c4ccd2; font-weight: 800; }footer p { margin: 0; }footer
 
 @media (max-width: 899px), (pointer: coarse) {
   .aurora-backdrop { opacity: .16; filter: blur(42px); }
-  .cursor-effects { display: none; }
   .global-grid-near { display: none; }
   .global-particle-field { opacity: .2; }
   .global-particle { transform: translate3d(0,var(--global-scroll-y),0) !important; }
@@ -697,7 +695,6 @@ footer > span { color: #c4ccd2; font-weight: 800; }footer p { margin: 0; }footer
 
 @media (prefers-reduced-motion: reduce) {
   .aurora-backdrop { display: none; }
-  .cursor-effects { display: none; }
   .hero-artwork-inner, .hero-frame, .hero-orbit, .hero-index { transform: none !important; }
   .global-light-field, .global-grid, .global-particle, [data-scene] { transform: none !important; opacity: 1 !important; }
   .scene-indicator > i > span { transform: none !important; }
