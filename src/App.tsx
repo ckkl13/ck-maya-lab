@@ -23,7 +23,7 @@ export default function App() {
         <DownloadsSection />
         <GradualBlur
           position="bottom"
-          target="parent"
+          target="page"
           height="13rem"
           strength={7}
           divCount={10}

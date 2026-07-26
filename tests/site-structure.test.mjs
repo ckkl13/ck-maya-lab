@@ -133,11 +133,11 @@ test('scene coordinator owns a mounted lifecycle scope', async () => {
   assert.match(transitions, /querySelector<HTMLElement>\('\.app-main'\)/)
 })
 
-test('app mounts one page-bottom GradualBlur', async () => {
+test('app mounts one fixed viewport-bottom GradualBlur', async () => {
   const app = await read('src/App.tsx')
   assert.equal((app.match(/<GradualBlur/g) ?? []).length, 1)
   assert.match(app, /position="bottom"/)
-  assert.match(app, /target="parent"/)
+  assert.match(app, /target="page"/)
   assert.match(app, /height="13rem"/)
   assert.match(app, /divCount=\{10\}/)
   assert.match(app, /strength=\{7\}/)
