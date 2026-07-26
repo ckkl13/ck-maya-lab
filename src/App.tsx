@@ -24,9 +24,10 @@ export default function App() {
         <GradualBlur
           position="bottom"
           target="page"
-          height="13rem"
-          strength={7}
-          divCount={10}
+          height="18rem"
+          strength={6}
+          divCount={16}
+          curve="bezier"
           opacity={1}
         />
       </main>

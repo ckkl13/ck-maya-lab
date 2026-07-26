@@ -36,21 +36,19 @@ export function GradualBlur({
   className = '',
 }: GradualBlurProps) {
   const layers = useMemo(() => {
-    const count = Math.min(10, Math.max(1, Math.round(divCount)))
-    const increment = 100 / count
+    const count = Math.min(18, Math.max(1, Math.round(divCount)))
     const direction = position === 'top' ? 'to top' : 'to bottom'
 
     return Array.from({ length: count }, (_, layerIndex) => {
       const index = layerIndex + 1
       const progress = curveFunctions[curve](index / count)
       const blur = exponential
-        ? 2 ** (progress * 4) * 0.0625 * strength
-        : 0.0625 * (progress * count + 1) * strength
-      const start = Math.round((increment * index - increment) * 10) / 10
-      const solidStart = Math.round(increment * index * 10) / 10
-      const solidEnd = Math.min(100, Math.round((increment * index + increment) * 10) / 10)
-      const fadeEnd = Math.min(100, Math.round((increment * index + increment * 2) * 10) / 10)
-      const mask = `linear-gradient(${direction}, transparent ${start}%, black ${solidStart}%, black ${solidEnd}%, transparent ${fadeEnd}%)`
+        ? 2 ** (progress * 3) * 0.014 * strength
+        : 0.032 * progress * strength
+      const centre = progress * 100
+      const fadeStart = Math.max(0, centre - 18)
+      const fadeEnd = Math.min(100, centre + 18)
+      const mask = `linear-gradient(${direction}, transparent ${fadeStart}%, black ${fadeEnd}%, black 100%)`
 
       return {
         backdropFilter: `blur(${blur.toFixed(3)}rem)`,

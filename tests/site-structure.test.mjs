@@ -138,9 +138,9 @@ test('app mounts one fixed viewport-bottom GradualBlur', async () => {
   assert.equal((app.match(/<GradualBlur/g) ?? []).length, 1)
   assert.match(app, /position="bottom"/)
   assert.match(app, /target="page"/)
-  assert.match(app, /height="13rem"/)
-  assert.match(app, /divCount=\{10\}/)
-  assert.match(app, /strength=\{7\}/)
+  assert.match(app, /height="18rem"/)
+  assert.match(app, /divCount=\{16\}/)
+  assert.match(app, /strength=\{6\}/)
   assert.match(app, /opacity=\{1\}/)
   assert.doesNotMatch(app, /exponential/)
 })
@@ -211,6 +211,13 @@ test('tool directory exposes both studio and guide destinations', async () => {
   assert.match(directory, /交互台/)
   assert.match(directory, /使用说明/)
   assert.match(guides, /tool-guide-select/)
+})
+
+test('GradualBlur overlaps many soft layers to avoid visible steps', async () => {
+  const component = await read('src/components/GradualBlur.tsx')
+  assert.match(component, /Math\.min\(18/)
+  assert.match(component, /centre - 18/)
+  assert.match(component, /centre \+ 18/)
 })
 
 test('tool directory matches the Dock interaction and links to tool showcases', async () => {
