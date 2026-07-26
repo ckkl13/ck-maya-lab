@@ -26,10 +26,8 @@ export function VariableProximity({ label, containerRef, className = '', radius 
         const distance = Math.hypot(pointer.x - (rect.left - bounds.left + rect.width / 2), pointer.y - (rect.top - bounds.top + rect.height / 2))
         const proximity = Math.max(0, 1 - distance / radius)
         const strength = proximity * proximity
-        letter.style.fontVariationSettings = `'wght' ${Math.round(420 + strength * 480)}, 'opsz' ${Math.round(14 + strength * 54)}`
-        letter.style.letterSpacing = `${strength * 0.024}em`
-        letter.style.transform = `translateY(${-strength * 3}px) scale(${1 + strength * 0.045})`
-        letter.style.color = strength > 0.12 ? '#efffff' : ''
+        letter.style.transform = `translateY(${-strength * 1.5}px) scale(${1 + strength * 0.022})`
+        letter.style.color = strength > 0.16 ? '#efffff' : ''
       })
     }
 
