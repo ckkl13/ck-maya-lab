@@ -145,6 +145,13 @@ test('app mounts one fixed viewport-bottom GradualBlur', async () => {
   assert.doesNotMatch(app, /exponential/)
 })
 
+test('scene transitions reverse into a visible upward exit', async () => {
+  const transitions = await read('src/components/SceneTransitions.tsx')
+  assert.match(transitions, /y: 64, autoAlpha: 0\.08/)
+  assert.match(transitions, /y: -44, autoAlpha: 0\.08/)
+  assert.match(transitions, /scrub: 0\.65/)
+})
+
 test('scene changes do not render a scanning line over the background', async () => {
   const app = await read('src/App.tsx')
   const transitions = await read('src/components/SceneTransitions.tsx')
