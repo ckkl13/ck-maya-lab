@@ -253,6 +253,13 @@ test('large page sections do not keep permanent compositor layers', async () => 
   assert.doesNotMatch(card, /will-change/)
 })
 
+test('the animation entry point excludes unused GSAP plugins from the main bundle', async () => {
+  const animation = await read('src/animation/gsap.ts')
+  assert.doesNotMatch(animation, /gsap\/Flip/)
+  assert.doesNotMatch(animation, /gsap\/Draggable/)
+  assert.match(animation, /registerPlugin\(useGSAP, ScrollTrigger\)/)
+})
+
 test('tool directory matches the Dock interaction and links to tool showcases', async () => {
   const directory = await read('src/components/ToolDirectory.tsx')
   const exhibition = await read('src/components/ToolExhibition.tsx')
@@ -307,12 +314,20 @@ test('hero tool screenshots use TiltedCard focus without decorative frame gaps',
 
 test('tool showcase cards keep the stable link-based image interaction', async () => {
   const exhibition = await read('src/components/ToolExhibition.tsx')
+  const card = await read('src/components/TiltedCard.tsx')
+  const cardCss = await read('src/components/TiltedCard.css')
   const css = await read('src/App.css')
   assert.match(exhibition, /<a className="work-visual"/)
   assert.match(exhibition, /<TiltedCard/)
+  assert.match(exhibition, /work-visual-hud/)
+  assert.match(exhibition, /work-visual-sequence/)
   assert.doesNotMatch(exhibition, /work\.querySelector\('\.work-visual'\), \{ autoAlpha/)
   assert.doesNotMatch(exhibition, /yPercent: -7/)
+  assert.match(card, /requestAnimationFrame\(renderPointer\)/)
+  assert.match(card, /bounds\.current = event\.currentTarget\.getBoundingClientRect\(\)/)
   assert.match(css, /\.work-tilt-card \.work-tilt-image[^}]*object-fit: contain/)
+  assert.match(css, /\.work-visual\s*\{[^}]*contain: paint/)
+  assert.match(cardCss, /@media \(max-width: 760px\), \(pointer: coarse\), \(prefers-reduced-motion: reduce\)[\s\S]*?\.tilted-card-inner::before \{ display: none;/)
 })
 
 test('hero artwork does not include an extra direction arrow', async () => {

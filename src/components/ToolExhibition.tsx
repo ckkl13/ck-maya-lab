@@ -58,7 +58,9 @@ export function ToolExhibition() {
         timeline
           .from(work.querySelector('.work-number'), { autoAlpha: 0, x: -24, duration: 0.45 })
           .from(work.querySelector('.work-tilt-card'), { y: 34, scale: 0.97, duration: 0.75, ease: 'power3.out' }, '<0.04')
+          .from(work.querySelectorAll('.work-visual-code, .work-visual-sequence, .work-visual-status, .work-visual-label'), { autoAlpha: 0, y: 10, stagger: 0.06, duration: 0.4 }, '<0.22')
           .from(work.querySelectorAll('.work-copy > *'), { autoAlpha: 0, y: 18, stagger: 0.07, duration: 0.46 }, '<0.16')
+          .from(work.querySelectorAll('.work-copy li'), { autoAlpha: 0, x: -8, stagger: 0.035, duration: 0.3 }, '<0.08')
       })
     })
     return () => mm.revert()
@@ -89,7 +91,16 @@ export function ToolExhibition() {
                 scaleOnHover={1.025}
                 focusable={false}
                 imageClassName="work-tilt-image"
-                overlay={<span className="work-visual-label">VIEW INTERACTIVE UI <ArrowUpRight /></span>}
+                overlay={
+                  <div className="work-visual-hud" aria-hidden="true">
+                    <span className="work-visual-code">MAYA / UI ARCHIVE</span>
+                    <span className="work-visual-sequence">
+                      {tools.map((item, sequenceIndex) => <i className={item.id === tool.id ? 'is-active' : ''} key={item.id}>0{sequenceIndex + 1}</i>)}
+                    </span>
+                    <span className="work-visual-status"><i /> INTERACTIVE PREVIEW</span>
+                    <span className="work-visual-label">VIEW INTERACTIVE UI <ArrowUpRight /></span>
+                  </div>
+                }
               />
             </a>
             <div className="work-copy">
