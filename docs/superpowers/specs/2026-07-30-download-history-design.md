@@ -18,9 +18,9 @@
 ## 版本与文件规则
 
 - 最新版下载继续使用 GitHub Release `maya-tools-2026.07` 下的固定文件名：
-  - `ck-rig-box.zip`
+  - `ck_rig_Box.zip`
   - `ck-tool.zip`
-  - `scripts-box.zip`
+  - `scripts.box.zip`
 - Scripts Box 更新前的 ZIP 归档到带日期的历史 Release；更新后的 ZIP 替换固定最新版资源。
 - CK Rig Box 与 CK Tool 当前 ZIP 保持不变，并继续作为最新版。
 - 历史页面数据集中维护，后续增加版本只需要增加一条数据记录。
@@ -48,4 +48,3 @@
 - Scripts Box 新 ZIP 不含缓存或备份文件，且安装入口存在。
 - `npm test`、`npm run lint`、`npm run build`、`npm audit --audit-level=moderate` 全部通过。
 - 桌面端与 390×844 手机端无横向溢出，控制台无错误。
-

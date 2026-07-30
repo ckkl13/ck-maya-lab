@@ -11,7 +11,7 @@ export const tools: ToolDefinition[] = [
     mayaVersions: 'Maya 2022+',
     platforms: 'Windows.Mac',
     accent: '#46d7c5',
-    downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/ck-rig-box.zip',
+    downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/ck_rig_Box.zip',
     features: ['四种层级模式', 'FK 复制链', '多类型约束', '次级控制器'],
   },
   {
@@ -37,7 +37,7 @@ export const tools: ToolDefinition[] = [
     mayaVersions: 'Maya 2022+',
     platforms: 'Windows.Mac',
     accent: '#f2c94c',
-    downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/scripts-box.zip',
+    downloadFile: 'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/scripts.box.zip',
     features: ['分组与搜索', '拖放排序', '回收站', '脚本编辑器'],
   },
 ]

@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - 三个工具现有 ZIP 始终作为各自最新版。
-- 全站兼容信息统一为 `Maya 2022+`、`Windows · Mac`。
+- 全站兼容信息统一为 `Maya 2022+`、`Windows.Mac`。
 - 浏览器只提供下载与界面展示，不执行 Python、MEL 或 Maya 功能。
 - 历史页必须是独立页面并按三个工具分区。
 - Scripts Box 包必须排除 Python 缓存、备份与临时文件。
@@ -161,4 +161,3 @@ Run: `npm audit --audit-level=moderate`
 - [ ] **Step 4: 验证线上页面与 Release**
 
 确认 GitHub Pages 工作流成功，线上 `history.html` 可打开，最新版与历史 ZIP 可下载。
-

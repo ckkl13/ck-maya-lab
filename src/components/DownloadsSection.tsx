@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { ArrowUpRight, Download, GitBranch } from 'lucide-react'
+import { ArrowUpRight, Download, GitBranch, History } from 'lucide-react'
 import { tools } from '../data/tools'
 import { ScrollFloatText } from './ScrollFloatText'
 import { VariableProximity } from './VariableProximity'
@@ -12,7 +12,10 @@ export function DownloadsSection() {
       <header className="downloads-header">
         <span>FINAL ROOM / DOWNLOAD ARCHIVE</span>
         <h2><ScrollFloatText><VariableProximity label="带走你的下一件 Maya 工具" containerRef={scope} radius={145} /></ScrollFloatText></h2>
-        <p>所有下载均为静态 ZIP 包。网页不会连接 Maya，也不会执行任何 Python 或 MEL。</p>
+        <div className="downloads-header-copy">
+          <p>所有下载均为静态 ZIP 包。网页不会连接 Maya，也不会执行任何 Python 或 MEL。</p>
+          <a href="./history.html"><History />下载历史版本<ArrowUpRight /></a>
+        </div>
       </header>
       <div className="download-list">
         {tools.map((tool, index) => (
@@ -25,7 +28,7 @@ export function DownloadsSection() {
         ))}
       </div>
       <footer className="exhibition-footer">
-        <div><strong>CK MAYA LAB</strong><span>Last update · 2026.07.25</span></div>
+        <div><strong>CK MAYA LAB</strong><span>Last update · 2026.07.30</span></div>
         <p>面向绑定师和动画师的 Maya 工具展览与交互文档。</p>
         <nav>
           <a href="./docs/TOOLS_USAGE.md">使用手册<ArrowUpRight /></a>
