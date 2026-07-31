@@ -10,26 +10,33 @@ describe('download history data', () => {
     ])
   })
 
-  it('keeps only the current release while no archive is retained', () => {
+  it('keeps exactly one latest release at the start of each history', () => {
     for (const tool of downloadHistory) {
-      expect(tool.releases).toHaveLength(1)
+      expect(tool.releases.length).toBeGreaterThan(0)
       expect(tool.releases[0].isLatest).toBe(true)
+      expect(tool.releases.filter((release) => release.isLatest)).toHaveLength(1)
       expect(getLatestRelease(tool.id).isLatest).toBe(true)
     }
   })
 
   it('points latest entries at the current GitHub release assets', () => {
     expect(getLatestRelease('ck-rig-box').downloadUrl).toMatch(/\/ck_rig_Box\.zip$/)
-    expect(getLatestRelease('ck-rig-box').sizeBytes).toBe(32_824)
-    expect(getLatestRelease('ck-tool').sizeBytes).toBe(16_668_009)
+    expect(getLatestRelease('ck-tool').downloadUrl).toMatch(/\/ck-tool\.zip$/)
     expect(getLatestRelease('scripts-box').downloadUrl).toMatch(/\/scripts\.box\.zip$/)
-    expect(getLatestRelease('scripts-box').sizeBytes).toBe(232_251)
+
+    for (const tool of downloadHistory) {
+      expect(getLatestRelease(tool.id).sizeBytes).toBeGreaterThan(0)
+    }
   })
 
-  it('uses the upload date for the displayed release version and date', () => {
+  it('uses upload-date versions for every generated release', () => {
     for (const tool of downloadHistory) {
-      expect(tool.releases[0].version).toBe('2026.07.31')
-      expect(tool.releases[0].date).toBe('2026-07-31')
+      for (const release of tool.releases) {
+        expect(release.date).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+        expect(release.version).toMatch(
+          new RegExp(`^${release.date.replaceAll('-', '\\.')}(?:\\.\\d+)?$`),
+        )
+      }
     }
   })
 

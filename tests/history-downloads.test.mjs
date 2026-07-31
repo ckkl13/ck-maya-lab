@@ -17,9 +17,10 @@ test('the latest download section links to the history page', () => {
   assert.match(downloads, /下载历史版本/)
 })
 
-test('the primary tool data keeps the current release asset names', () => {
+test('the primary tool downloads follow the generated latest releases', () => {
   const tools = read('src/data/tools.ts')
 
-  assert.match(tools, /maya-tools-2026\.07\/ck_rig_Box\.zip/)
-  assert.match(tools, /maya-tools-2026\.07\/scripts\.box\.zip/)
+  assert.match(tools, /getLatestRelease\('ck-rig-box'\)\.downloadUrl/)
+  assert.match(tools, /getLatestRelease\('ck-tool'\)\.downloadUrl/)
+  assert.match(tools, /getLatestRelease\('scripts-box'\)\.downloadUrl/)
 })

@@ -1,3 +1,5 @@
+import generatedHistory from './downloadHistory.generated.json'
+
 export type ToolId = 'ck-rig-box' | 'ck-tool' | 'scripts-box'
 
 export interface DownloadRelease {
@@ -19,8 +21,11 @@ export interface DownloadToolHistory {
   releases: DownloadRelease[]
 }
 
-const latestBase =
-  'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07'
+type GeneratedRelease = Omit<DownloadRelease, 'note'> & {
+  sourceTag: string
+}
+
+const generatedTools = generatedHistory.tools as Record<ToolId, GeneratedRelease[]>
 
 export const downloadHistory: DownloadToolHistory[] = [
   {
@@ -30,16 +35,12 @@ export const downloadHistory: DownloadToolHistory[] = [
     mayaVersions: 'Maya 2022+',
     platforms: 'Windows.Mac',
     accent: '#45d6c4',
-    releases: [
-      {
-        version: '2026.07.31',
-        date: '2026-07-31',
-        sizeBytes: 32_824,
-        downloadUrl: `${latestBase}/ck_rig_Box.zip`,
-        isLatest: true,
-        note: '当前稳定版，包含 FK 控制器与层级工具。',
-      },
-    ],
+    releases: generatedTools['ck-rig-box'].map((release) => ({
+      ...release,
+      note: release.isLatest
+        ? '当前稳定版，包含 FK 控制器与层级工具。'
+        : '历史归档，可用于旧项目复现与兼容性回退。',
+    })),
   },
   {
     id: 'ck-tool',
@@ -48,16 +49,12 @@ export const downloadHistory: DownloadToolHistory[] = [
     mayaVersions: 'Maya 2022+',
     platforms: 'Windows.Mac',
     accent: '#efb655',
-    releases: [
-      {
-        version: '2026.07.31',
-        date: '2026-07-31',
-        sizeBytes: 16_668_009,
-        downloadUrl: `${latestBase}/ck-tool.zip`,
-        isLatest: true,
-        note: '当前稳定版，包含控制器形状与绑定辅助工具。',
-      },
-    ],
+    releases: generatedTools['ck-tool'].map((release) => ({
+      ...release,
+      note: release.isLatest
+        ? '当前稳定版，包含控制器形状与绑定辅助工具。'
+        : '历史归档，可用于旧项目复现与兼容性回退。',
+    })),
   },
   {
     id: 'scripts-box',
@@ -66,16 +63,12 @@ export const downloadHistory: DownloadToolHistory[] = [
     mayaVersions: 'Maya 2022+',
     platforms: 'Windows.Mac',
     accent: '#92a7ff',
-    releases: [
-      {
-        version: '2026.07.31',
-        date: '2026-07-31',
-        sizeBytes: 232_251,
-        downloadUrl: `${latestBase}/scripts.box.zip`,
-        isLatest: true,
-        note: '当前稳定版，支持脚本分组、搜索、编辑与配置管理。',
-      },
-    ],
+    releases: generatedTools['scripts-box'].map((release) => ({
+      ...release,
+      note: release.isLatest
+        ? '当前稳定版，支持脚本分组、搜索、编辑与配置管理。'
+        : '历史归档，可用于旧项目复现与兼容性回退。',
+    })),
   },
 ]
 

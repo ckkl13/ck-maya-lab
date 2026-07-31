@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-07-31T04:06:50Z",
+  "tools": {
+    "ck-rig-box": [
+      {
+        "version": "2026.07.31",
+        "date": "2026-07-31",
+        "sizeBytes": 32824,
+        "downloadUrl": "https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/ck_rig_Box.zip",
+        "isLatest": true,
+        "sourceTag": "maya-tools-2026.07"
+      }
+    ],
+    "ck-tool": [
+      {
+        "version": "2026.07.31",
+        "date": "2026-07-31",
+        "sizeBytes": 16668009,
+        "downloadUrl": "https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/ck-tool.zip",
+        "isLatest": true,
+        "sourceTag": "maya-tools-2026.07"
+      }
+    ],
+    "scripts-box": [
+      {
+        "version": "2026.07.31",
+        "date": "2026-07-31",
+        "sizeBytes": 232251,
+        "downloadUrl": "https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07/scripts.box.zip",
+        "isLatest": true,
+        "sourceTag": "maya-tools-2026.07"
+      }
+    ]
+  }
+}
