@@ -32,8 +32,8 @@ export const downloadHistory: DownloadToolHistory[] = [
     accent: '#45d6c4',
     releases: [
       {
-        version: '2026.07',
-        date: '2026-07-25',
+        version: '2026.07.31',
+        date: '2026-07-31',
         sizeBytes: 32_824,
         downloadUrl: `${latestBase}/ck_rig_Box.zip`,
         isLatest: true,
@@ -50,8 +50,8 @@ export const downloadHistory: DownloadToolHistory[] = [
     accent: '#efb655',
     releases: [
       {
-        version: '2026.07',
-        date: '2026-07-25',
+        version: '2026.07.31',
+        date: '2026-07-31',
         sizeBytes: 16_668_009,
         downloadUrl: `${latestBase}/ck-tool.zip`,
         isLatest: true,
@@ -68,8 +68,8 @@ export const downloadHistory: DownloadToolHistory[] = [
     accent: '#92a7ff',
     releases: [
       {
-        version: '2026.07',
-        date: '2026-07-30',
+        version: '2026.07.31',
+        date: '2026-07-31',
         sizeBytes: 232_251,
         downloadUrl: `${latestBase}/scripts.box.zip`,
         isLatest: true,

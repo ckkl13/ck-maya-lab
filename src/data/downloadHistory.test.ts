@@ -26,6 +26,13 @@ describe('download history data', () => {
     expect(getLatestRelease('scripts-box').sizeBytes).toBe(232_251)
   })
 
+  it('uses the upload date for the displayed release version and date', () => {
+    for (const tool of downloadHistory) {
+      expect(tool.releases[0].version).toBe('2026.07.31')
+      expect(tool.releases[0].date).toBe('2026-07-31')
+    }
+  })
+
   it('formats archive sizes for readers', () => {
     expect(formatFileSize(34_187)).toBe('33.4 KB')
     expect(formatFileSize(16_674_526)).toBe('15.9 MB')
