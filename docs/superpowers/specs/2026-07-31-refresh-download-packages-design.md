@@ -29,6 +29,7 @@
 - 每个 ZIP 保留对应工具文件夹作为顶层目录。
 - 包含工具源码、图标、说明文档、安装入口和业务资源。
 - 排除所有 `__pycache__` 目录。
+- 排除开发环境目录 `.git`、`.venv` 和 `graphify-out`。
 - 排除 `.pyc`、`.pyo`、`.bak`、`.log`、`.tmp`、`.DS_Store` 和 `Thumbs.db`。
 - Scripts Box 的 `data/backup`、`data/Output` 和 `data/shelves` 只保留空目录，不包含运行时内容。
 - 打包后记录文件大小、SHA-256、条目数，并验证入口文件存在。
@@ -57,4 +58,3 @@
 - 桌面端与 390×844 手机端无横向溢出。
 - Vitest、Node 结构测试、Lint、Build 和 Audit 全部通过。
 - GitHub Pages 部署完成后，主站下载链接和历史页最新版下载链接均有效。
-
