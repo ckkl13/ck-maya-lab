@@ -21,8 +21,6 @@ export interface DownloadToolHistory {
 
 const latestBase =
   'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07'
-const archiveBase =
-  'https://github.com/ckkl13/ck-maya-lab/releases/download/maya-tools-2026.07.25'
 
 export const downloadHistory: DownloadToolHistory[] = [
   {
@@ -36,18 +34,10 @@ export const downloadHistory: DownloadToolHistory[] = [
       {
         version: '2026.07',
         date: '2026-07-25',
-        sizeBytes: 348_160,
+        sizeBytes: 32_824,
         downloadUrl: `${latestBase}/ck_rig_Box.zip`,
         isLatest: true,
         note: '当前稳定版，包含 FK 控制器与层级工具。',
-      },
-      {
-        version: '2026.07.25',
-        date: '2026-07-25',
-        sizeBytes: 34_187,
-        downloadUrl: `${archiveBase}/ck-rig-box.zip`,
-        isLatest: false,
-        note: '首个网站归档快照。',
       },
     ],
   },
@@ -62,18 +52,10 @@ export const downloadHistory: DownloadToolHistory[] = [
       {
         version: '2026.07',
         date: '2026-07-25',
-        sizeBytes: 16_674_526,
+        sizeBytes: 16_668_009,
         downloadUrl: `${latestBase}/ck-tool.zip`,
         isLatest: true,
         note: '当前稳定版，包含控制器形状与绑定辅助工具。',
-      },
-      {
-        version: '2026.07.25',
-        date: '2026-07-25',
-        sizeBytes: 16_674_526,
-        downloadUrl: `${archiveBase}/ck-tool.zip`,
-        isLatest: false,
-        note: '首个网站归档快照。',
       },
     ],
   },
@@ -88,18 +70,10 @@ export const downloadHistory: DownloadToolHistory[] = [
       {
         version: '2026.07',
         date: '2026-07-30',
-        sizeBytes: 904_546,
+        sizeBytes: 232_251,
         downloadUrl: `${latestBase}/scripts.box.zip`,
         isLatest: true,
         note: '当前稳定版，支持脚本分组、搜索、编辑与配置管理。',
-      },
-      {
-        version: '2026.07.25',
-        date: '2026-07-25',
-        sizeBytes: 99_871_835,
-        downloadUrl: `${archiveBase}/scripts-box.zip`,
-        isLatest: false,
-        note: '更新前的网站归档快照。',
       },
     ],
   },

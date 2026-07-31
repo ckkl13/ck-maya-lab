@@ -110,6 +110,12 @@ export function DownloadHistoryPage() {
                   </a>
                 </article>
               ))}
+              {tool.releases.every((release) => release.isLatest) && (
+                <div className="history-empty-state">
+                  <span>ARCHIVE EMPTY</span>
+                  <p>当前暂无历史归档</p>
+                </div>
+              )}
             </div>
           </section>
         ))}

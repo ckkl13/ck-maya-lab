@@ -10,18 +10,20 @@ describe('download history data', () => {
     ])
   })
 
-  it('marks exactly one release as latest for every tool', () => {
+  it('keeps only the current release while no archive is retained', () => {
     for (const tool of downloadHistory) {
-      expect(tool.releases.filter((release) => release.isLatest)).toHaveLength(1)
+      expect(tool.releases).toHaveLength(1)
+      expect(tool.releases[0].isLatest).toBe(true)
       expect(getLatestRelease(tool.id).isLatest).toBe(true)
     }
   })
 
   it('points latest entries at the current GitHub release assets', () => {
     expect(getLatestRelease('ck-rig-box').downloadUrl).toMatch(/\/ck_rig_Box\.zip$/)
-    expect(getLatestRelease('ck-rig-box').sizeBytes).toBe(348_160)
+    expect(getLatestRelease('ck-rig-box').sizeBytes).toBe(32_824)
+    expect(getLatestRelease('ck-tool').sizeBytes).toBe(16_668_009)
     expect(getLatestRelease('scripts-box').downloadUrl).toMatch(/\/scripts\.box\.zip$/)
-    expect(getLatestRelease('scripts-box').sizeBytes).toBe(904_546)
+    expect(getLatestRelease('scripts-box').sizeBytes).toBe(232_251)
   })
 
   it('formats archive sizes for readers', () => {

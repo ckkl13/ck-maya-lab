@@ -137,6 +137,21 @@
 
 .history-release > a:hover { transform: translateY(-3px) scale(1.025); box-shadow: 0 12px 30px color-mix(in srgb, var(--history-accent) 22%, transparent); }
 
+.history-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  min-height: 86px;
+  margin-top: 18px;
+  padding: 18px 22px;
+  border: 1px dashed color-mix(in srgb, var(--history-accent) 32%, #293137);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--history-accent) 4%, transparent);
+}
+.history-empty-state span { color: var(--history-accent); font: 9px/1 ui-monospace, Consolas, monospace; letter-spacing: .14em; }
+.history-empty-state p { margin: 0; color: #7d8991; font-size: 11px; }
+
 .history-footer {
   position: relative;
   z-index: 1;
@@ -184,6 +199,7 @@
   .history-release > a { grid-column: 1; grid-row: auto; }
   .history-release dl { justify-content: space-between; }
   .history-release > a { width: 100%; min-height: 46px; }
+  .history-empty-state { align-items: flex-start; flex-direction: column; gap: 10px; min-height: 92px; }
   .history-footer { grid-template-columns: 26px 1fr; }
   .history-footer a { grid-column: 2; }
 }

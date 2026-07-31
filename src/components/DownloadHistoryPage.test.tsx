@@ -18,4 +18,11 @@ describe('DownloadHistoryPage', () => {
     expect(html).toContain('href="./"')
     expect(html).toContain('返回工具展览')
   })
+
+  it('shows an empty archive state without removing the history interface', () => {
+    const html = renderToStaticMarkup(<DownloadHistoryPage />)
+
+    expect(html.match(/history-empty-state/g)).toHaveLength(3)
+    expect(html.match(/当前暂无历史归档/g)).toHaveLength(3)
+  })
 })
